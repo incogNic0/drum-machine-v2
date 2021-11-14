@@ -1,0 +1,7 @@
+.sample-pad {
+    display: inline-block;
+    width: 15%;
+    background-color: khaki;
+    border-radius: 10px;
+    font-size: inherit;
+}

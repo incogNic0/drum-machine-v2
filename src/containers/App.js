@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ControlPanel from '../components/ControlPanel/ControlPanel'
 import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
+import SamplesSection from '../components/SamplesPanel/SamplesSection';
 
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
                     onTempoChange={this.onTempoChange}
                 />
                 < BeatIndicators />
+                < SamplesSection />
             </div>
           );
     }

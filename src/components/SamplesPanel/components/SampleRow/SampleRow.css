@@ -1,0 +1,14 @@
+.sample-row {
+    background-color: black;
+    font-size: inherit;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.quarter {
+    display: flex;
+    justify-content: space-between;
+}
