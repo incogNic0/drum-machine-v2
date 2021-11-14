@@ -1,0 +1,8 @@
+.container {
+    height: 850px;
+    max-height: 850px;
+    width: 100%;
+    padding: 20px 10px;
+    border-radius: 5px;
+    background-image: url('./brushed-aluminium.jpg');
+}

@@ -1,0 +1,17 @@
+.reset-btn {
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    color: yellowgreen;
+    font-size: 24px;
+}
+
+.reset-btn p {
+    margin: 0;
+    padding: 0;
+}
+
+.reset-btn:active {
+    transform: scale(.95);
+}
