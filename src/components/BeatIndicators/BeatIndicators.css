@@ -1,0 +1,20 @@
+.beat-indicator {
+    height: 16px;
+    width: 16px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px;
+}
+
+.indicator-panel {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.beat-indicator.quarter {
+    height: 20px;
+    width: 20px;
+}

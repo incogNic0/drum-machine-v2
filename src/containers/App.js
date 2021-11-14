@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ControlPanel from '../components/ControlPanel/ControlPanel'
+import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
                     currentTempo={this.state.currentTempo}
                     onTempoChange={this.onTempoChange}
                 />
+                < BeatIndicators />
             </div>
           );
     }
