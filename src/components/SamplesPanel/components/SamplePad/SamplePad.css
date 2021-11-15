@@ -1,7 +1,9 @@
 .sample-pad {
     display: inline-block;
     width: 15%;
-    background-color: khaki;
+    background-image: url('./brushed-aluminium.jpg');
     border-radius: 10px;
     font-size: inherit;
+    padding: 12px 0;
+    color: whitesmoke;
 }

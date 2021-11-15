@@ -2,18 +2,19 @@
     box-sizing: border-box;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 
 body {
   margin: 0;
   padding: 50px;
   height: 100vh;
   width: 100vw;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Orbitron', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-color: #303030;
   letter-spacing: 3px;
+  font-size: 22;
 }
 
 code {
