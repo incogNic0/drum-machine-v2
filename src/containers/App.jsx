@@ -4,6 +4,7 @@ import ControlPanel from '../components/ControlPanel/ControlPanel'
 import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 import SamplesSection from '../components/SamplesPanel/SamplesSection';
 
+let playing;
 
 class App extends Component {
     constructor() {
@@ -11,16 +12,42 @@ class App extends Component {
         this.state = {
             isPlaying: false,
             kits: ['rock','dnb','techno', 'house'],
-            currentTempo: 100,
+            currentTempo: 0,
+            timing: 0,
+            currentStep: -1
         }
     }
 
-    onPlayPause = ()=> {
-        this.setState({isPlaying: !this.state.isPlaying})
+    componentDidMount(){
+        this.onTempoChange(100)
     }
 
-    onTempoChange = (num)=> {
-        this.setState({currentTempo: num});
+    onPlayStop = ()=> {
+        if(this.state.isPlaying) {
+            this.setState({isPlaying: false})
+        } else {
+            this.setState({isPlaying: true, currentStep: -1})   
+            clearInterval(playing)
+            playing = setInterval(() => this.playSequence(), this.state.timing)
+        }
+    }
+
+    playSequence = () => {
+        
+        this.incrementCurrentStep()
+    }
+
+    incrementCurrentStep = () => {
+        let nextStep = this.state.currentStep + 1
+        this.setState({
+            currentStep: nextStep < 16 ? nextStep : 0
+        })
+    }
+
+    onTempoChange = (tempo)=> {
+        this.setState({
+            currentTempo: tempo,
+            timing: (60000 / tempo / 4).toFixed(4)});
     }
 
     render() {
@@ -28,12 +55,14 @@ class App extends Component {
             <div className="container">
                 < ControlPanel 
                     isPlaying={this.state.isPlaying}
-                    onPlayPause={this.onPlayPause}
+                    onPlayPause={this.onPlayStop}
                     kits={this.state.kits}
                     currentTempo={this.state.currentTempo}
                     onTempoChange={this.onTempoChange}
                 />
-                < BeatIndicators />
+                < BeatIndicators 
+                    isPlaying={this.state.isPlaying}
+                    currentStep={this.state.currentStep} />
                 < SamplesSection />
             </div>
           );
