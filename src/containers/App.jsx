@@ -12,6 +12,7 @@ class App extends Component {
         this.state = {
             isPlaying: false,
             kits: ['rock','dnb','techno', 'house'],
+            activePads: {}, // col key w/ array value of rows
             currentTempo: 0,
             timing: 0,
             currentStep: -1
@@ -50,6 +51,23 @@ class App extends Component {
             timing: (60000 / tempo / 4).toFixed(4)});
     }
 
+    onBeatPadClick = (evt,row,col) => {
+        const pad = evt.target;
+        let activePads = {...this.state.activePads}
+        if(pad.classList.contains('active')) {
+            pad.classList.remove('active');
+            activePads[col] = activePads[col].filter(r => r !== row)
+        } else {
+            pad.classList.add('active');
+            if(activePads[col]) {
+                activePads[col].push(row)
+            } else {
+                activePads[col] = [row]
+            }
+        }
+        this.setState({ activePads })
+    }
+
     render() {
         return (
             <div className="container">
@@ -63,7 +81,9 @@ class App extends Component {
                 < BeatIndicators 
                     isPlaying={this.state.isPlaying}
                     currentStep={this.state.currentStep} />
-                < SamplesSection />
+                < SamplesSection
+                    onBeatPadClick={this.onBeatPadClick}
+                />
             </div>
           );
     }

@@ -3,6 +3,7 @@
     --second-quarter: #4F4F4F;
     --third-quarter: #d2d2be80;
     --fourth-quarter: #bebed260;
+    --active-pad: red;
 }
 
 .beat-pad {
@@ -12,6 +13,9 @@
     background-color: var(--fourth-quarter);
 }
 
+.beat-pad.btn.active {
+    background-color: yellowgreen;
+}
 /* beat 1 */
 .beat-pad:nth-child(-n+5) {
     background-color: var(--first-quarter);
@@ -49,3 +53,5 @@
 .beat-pad:nth-last-child(-n+4) {
     background-color: var(--fourth-quarter);
 }
+
+
