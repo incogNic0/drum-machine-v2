@@ -1,0 +1,11 @@
+.beat-indicator {
+    height: 12px;
+    width: 12px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.active {
+    background-color: red;
+}
