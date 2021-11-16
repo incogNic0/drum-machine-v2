@@ -6,13 +6,28 @@ class BeatPad extends Component {
         super(props);
         this.row = props.row
         this.col = props.col
+        this.state = {
+            isActive: false
+        }
+    }
+
+    handleClickEvent(e) {
+        // returns state prior to click
+        this.props.onBeatPadClick(this.row,this.col, this.state.isActive);
+        this.setState({isActive: !this.state.isActive});
     }
     
     render() {
+        const {isPlaying, currentStep} = this.props
+        const activeClass = this.state.isActive ? 'active' : '';
+        let playingClass = '';
+        if(isPlaying && this.state.isActive && this.col === currentStep) {
+            playingClass = 'playing'
+        }
         return (
             <div 
-                className='beat-pad btn'
-                onClick={(e) => {this.props.onBeatPadClick(e,this.row,this.col)}}
+                className={`beat-pad btn ${activeClass} ${playingClass}`}
+                onClick={(e) => {this.handleClickEvent()}}
             ></div>
         )
     }

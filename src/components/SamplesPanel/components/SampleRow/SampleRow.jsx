@@ -17,6 +17,8 @@ class SampleRow extends Component {
                     row={this.row}
                     col={i}
                     onBeatPadClick={this.props.onBeatPadClick}
+                    isPlaying={this.props.isPlaying}
+                    currentStep={this.props.currentStep}
                     key={i}
                 />
             )
@@ -29,7 +31,7 @@ class SampleRow extends Component {
         const padsArray = this.loadBeatPads();
         return (
             <div className='sample-row'>
-                < SamplePad />
+                < SamplePad sampleName={this.props.sampleName} />
                 {padsArray}
             </div>
         )

@@ -12,7 +12,9 @@ class App extends Component {
         this.state = {
             isPlaying: false,
             kits: ['rock','dnb','techno', 'house'],
+            samples: ['kick','kick2','snare','snare2','tom','h-hat','h-hat2','crash','ride'],
             activePads: {}, // col key w/ array value of rows
+            currentStepPads: [],
             currentTempo: 0,
             timing: 0,
             currentStep: -1
@@ -24,18 +26,23 @@ class App extends Component {
     }
 
     onPlayStop = ()=> {
+        clearInterval(playing)
         if(this.state.isPlaying) {
-            this.setState({isPlaying: false})
+            this.setState({isPlaying: false, currentStepPads: []})
         } else {
-            this.setState({isPlaying: true, currentStep: -1})   
-            clearInterval(playing)
+            this.setState({ isPlaying: true, currentStep: -1 })   
             playing = setInterval(() => this.playSequence(), this.state.timing)
         }
     }
 
     playSequence = () => {
-        
+        /*  BeatIndicator animation is triggered when currentStep state changes.
+            If currentStep === index of Indicator then 'active' class is added 
+            and then not added (or 'removed') during the next rendering of playSequence
+        */
         this.incrementCurrentStep()
+        const currentStepPads = this.state.activePads[this.state.currentStep];
+        this.setState({currentStepPads})
     }
 
     incrementCurrentStep = () => {
@@ -51,20 +58,21 @@ class App extends Component {
             timing: (60000 / tempo / 4).toFixed(4)});
     }
 
-    onBeatPadClick = (evt,row,col) => {
-        const pad = evt.target;
+    onBeatPadClick = (row, col, isActive) => {
         let activePads = {...this.state.activePads}
-        if(pad.classList.contains('active')) {
-            pad.classList.remove('active');
-            activePads[col] = activePads[col].filter(r => r !== row)
+        // previous state of pad
+        if(isActive) {
+            // was active, but no longer. remove from array
+            activePads[col] = activePads[col].filter(xRow => xRow !== row)
         } else {
-            pad.classList.add('active');
+            // wasn't active, but now is.  add to array
             if(activePads[col]) {
                 activePads[col].push(row)
             } else {
                 activePads[col] = [row]
             }
         }
+        activePads[col].sort()
         this.setState({ activePads })
     }
 
@@ -83,6 +91,9 @@ class App extends Component {
                     currentStep={this.state.currentStep} />
                 < SamplesSection
                     onBeatPadClick={this.onBeatPadClick}
+                    samples={this.state.samples}
+                    isPlaying={this.state.isPlaying}
+                    currentStep={this.state.currentStep}
                 />
             </div>
           );

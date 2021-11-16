@@ -1,9 +1,9 @@
 import React from "react";
 import './SamplePad.css'
 
-function SamplePad() {
+function SamplePad({ sampleName }) {
     return (
-        <div className='sample-pad btn'>Kick</div>
+        <div className='sample-pad btn'>{sampleName.toUpperCase()}</div>
     )
 }
 
