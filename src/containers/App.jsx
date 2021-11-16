@@ -6,6 +6,7 @@ import SamplesSection from '../components/SamplesPanel/SamplesSection';
 
 let playing;
 
+
 class App extends Component {
     constructor() {
         super();
@@ -13,8 +14,7 @@ class App extends Component {
             isPlaying: false,
             kits: ['rock','dnb','techno', 'house'],
             samples: ['kick','kick2','snare','snare2','tom','h-hat','h-hat2','crash','ride'],
-            activePads: {}, // col key w/ array value of rows
-            currentStepPads: [],
+            allPadsCurrentState: {},
             currentTempo: 0,
             timing: 0,
             currentStep: -1
@@ -23,6 +23,8 @@ class App extends Component {
 
     componentDidMount(){
         this.onTempoChange(100)
+        const pads = setAllPadsInitialState(this.state.samples, 16);
+        this.setState({allPadsCurrentState: pads})
     }
 
     onPlayStop = ()=> {
@@ -36,13 +38,12 @@ class App extends Component {
     }
 
     playSequence = () => {
-        /*  BeatIndicator animation is triggered when currentStep state changes.
-            If currentStep === index of Indicator then 'active' class is added 
-            and then not added (or 'removed') during the next rendering of playSequence
+        /*  BeatIndicator and BeatPad animations are triggered when currentStep state changes.
+            If currentStep === index/step of Indicator/BeatPad then 'active' class is added. 
+            It's then removed, or not added, during the next rendering of playSequence since
+            currentStep !== index/step.
         */
         this.incrementCurrentStep()
-        const currentStepPads = this.state.activePads[this.state.currentStep];
-        this.setState({currentStepPads})
     }
 
     incrementCurrentStep = () => {
@@ -52,28 +53,33 @@ class App extends Component {
         })
     }
 
+    onResetClick = () => {
+        const resetState = setAllPadsInitialState(this.state.samples, 16);
+        this.setState({allPadsCurrentState: resetState})
+    }
+
     onTempoChange = (tempo)=> {
         this.setState({
             currentTempo: tempo,
             timing: (60000 / tempo / 4).toFixed(4)});
     }
 
-    onBeatPadClick = (row, col, isActive) => {
-        let activePads = {...this.state.activePads}
-        // previous state of pad
-        if(isActive) {
-            // was active, but no longer. remove from array
-            activePads[col] = activePads[col].filter(xRow => xRow !== row)
-        } else {
-            // wasn't active, but now is.  add to array
-            if(activePads[col]) {
-                activePads[col].push(row)
-            } else {
-                activePads[col] = [row]
-            }
+    onBeatPadClick = (clickedSample, step) => {
+        const currentState = {...this.state.allPadsCurrentState};
+        const updatedState = {}
+        // copy state
+        for (const sample in currentState) {
+            updatedState[sample] = [...currentState[sample]]
         }
-        activePads[col].sort()
-        this.setState({ activePads })
+
+        // flip state of clicked pad
+        if(updatedState[clickedSample]) {
+            updatedState[clickedSample][step] = !updatedState[clickedSample][step] 
+        } else {
+            throw new Error('This sample is not currently loaded: ', clickedSample)
+        }
+
+        this.setState({ allPadsCurrentState: updatedState })
     }
 
     render() {
@@ -85,13 +91,14 @@ class App extends Component {
                     kits={this.state.kits}
                     currentTempo={this.state.currentTempo}
                     onTempoChange={this.onTempoChange}
+                    onResetClick={this.onResetClick}
                 />
                 < BeatIndicators 
                     isPlaying={this.state.isPlaying}
                     currentStep={this.state.currentStep} />
                 < SamplesSection
                     onBeatPadClick={this.onBeatPadClick}
-                    samples={this.state.samples}
+                    allPadsCurrentState={this.state.allPadsCurrentState}
                     isPlaying={this.state.isPlaying}
                     currentStep={this.state.currentStep}
                 />
@@ -101,4 +108,17 @@ class App extends Component {
 
 }
 
+function setAllPadsInitialState(samplesArr, numSteps) {
+    // all pads initial state is inactive (false) by default
+    const allPads = []
+    for (const sample of samplesArr) {
+        allPads[sample] = []
+        for (let step=0; step<numSteps; step++) {
+            allPads[sample].push(false)
+        }
+    }
+    return allPads;
+}
+
 export default App;
+

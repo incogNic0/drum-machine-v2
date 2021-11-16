@@ -2,9 +2,9 @@ import React from "react";
 import './ResetBtn.css'
 
 
-function ResetBtn() {
+function ResetBtn({onResetClick}) {
     return (
-        <div className='reset-btn btn'>
+        <div className='reset-btn btn' onClick={onResetClick}>
             <p>reset</p>
         </div>
     )

@@ -6,22 +6,35 @@ import BeatPad from "../BeatPad/BeatPad";
 class SampleRow extends Component {
     constructor(props) {
         super(props);
-        this.row = props.row
+        this.sampleName = props.sampleName
     }
 
     loadBeatPads() {
+        const {
+
+            sampleName,
+            onBeatPadClick,
+            isPlaying,
+            currentStep,
+            padsState
+        
+        } = this.props
+
         const beatPadsArray = []
-        for (let i=0; i<16; i++) {
+        let step = 0;
+        for (const padState of padsState) {
             beatPadsArray.push(
                 < BeatPad
-                    row={this.row}
-                    col={i}
-                    onBeatPadClick={this.props.onBeatPadClick}
-                    isPlaying={this.props.isPlaying}
-                    currentStep={this.props.currentStep}
-                    key={i}
+                    sampleName={sampleName}
+                    step={step}
+                    isActive={padState}
+                    onBeatPadClick={onBeatPadClick}
+                    isPlaying={isPlaying}
+                    currentStep={currentStep}
+                    key={step}
                 />
             )
+            step++
         }
         return beatPadsArray;
     }
