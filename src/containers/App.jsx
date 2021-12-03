@@ -64,13 +64,19 @@ class App extends Component {
     onBeatPadClick = (clickedSample, step) => {
         const currentState = {...this.state.allPadsCurrentState};
         const updatedState = {}
-        // copy state
         for (const sample in currentState) {
             updatedState[sample] = [...currentState[sample]]
         }
 
         // flip state of clicked pad
         if(updatedState[clickedSample]) {
+            const isActive = updatedState[clickedSample][step];
+            if(!isActive && !this.state.isPlaying) {
+                const src = allKits[this.state.kits.current].path + clickedSample.toLowerCase() + '.wav';
+                const audio = new Audio(src);
+                audio.currentTime = 0;
+                audio.play();
+            }
             updatedState[clickedSample][step] = !updatedState[clickedSample][step] 
         } else {
             throw new Error('This sample is not currently loaded: ', clickedSample)
@@ -79,18 +85,23 @@ class App extends Component {
         this.setState({ allPadsCurrentState: updatedState })
     }
 
+    onSamplePadClick = (e) => {
+        const audio = e.target.children[0];
+        audio.currentTime = 0;
+        audio.play();
+    }
+
     onKitSelection = (e) => {
         const kits = {...this.state.kits};
         kits.current = e.target.value;
         this.setState({kits});
-        this.setAllPadsInitialState();
+        this.setAllPadsInitialState(kits);
     }
 
-    setAllPadsInitialState = () => {
+    setAllPadsInitialState = (kits=this.state.kits) => {
         // all pads initial state is inactive (false) by default
-        const kitName = this.state.kits.current;
-        const kit = allKits[kitName];
-        const allPads = []
+        const kit = allKits[kits.current];
+        const allPads = {}
         for (const sample of kit.samples) {
             allPads[sample] = []
             for (let step=0; step<16; step++) {
@@ -119,8 +130,10 @@ class App extends Component {
                 < SamplesSection
                     onBeatPadClick={this.onBeatPadClick}
                     allPadsCurrentState={this.state.allPadsCurrentState}
+                    kits = {this.state.kits}
                     isPlaying={this.state.isPlaying}
                     currentStep={this.state.currentStep}
+                    onSamplePadClick={this.onSamplePadClick}
                 />
             </div>
         );

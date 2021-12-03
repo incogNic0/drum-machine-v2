@@ -11,7 +11,7 @@ class SampleRow extends Component {
 
     loadBeatPads() {
         const {
-
+            kits,
             sampleName,
             onBeatPadClick,
             isPlaying,
@@ -25,6 +25,7 @@ class SampleRow extends Component {
         for (const padState of padsState) {
             beatPadsArray.push(
                 < BeatPad
+                    kits={kits}
                     sampleName={sampleName}
                     step={step}
                     isActive={padState}
@@ -44,7 +45,11 @@ class SampleRow extends Component {
         const padsArray = this.loadBeatPads();
         return (
             <div className='sample-row'>
-                < SamplePad sampleName={this.props.sampleName} />
+                < SamplePad 
+                    kits={this.props.kits}
+                    sampleName={this.props.sampleName}
+                    onSamplePadClick={this.props.onSamplePadClick}
+                />
                 {padsArray}
             </div>
         )
