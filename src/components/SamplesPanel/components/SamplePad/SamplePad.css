@@ -7,3 +7,7 @@
     padding: 14px 0;
     color: whitesmoke;
 }
+
+.sample-pad:active {
+    transform: scale(.98);
+}
