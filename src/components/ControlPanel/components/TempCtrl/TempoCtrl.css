@@ -5,17 +5,17 @@
     color: yellowgreen;
     border-radius: 5px;
     text-decoration: none;
-    padding: 4px 10px;
+    padding: 4px 0;
     min-width: 30px;
     text-align: center;
 }
 
 .current-tempo {
-    margin: 0 5px;
+    margin: 0;
     background-color: black;
     color: yellowgreen;
     font-size: inherit;
-    min-width: 60px
+    min-width: 60px;
 }
 
 button {

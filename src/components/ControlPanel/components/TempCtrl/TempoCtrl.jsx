@@ -6,7 +6,7 @@ function TempoCtrl({currentTempo, onTempoChange}) {
     const incrementTempo = () => onTempoChange(currentTempo + 1);
     const decrementTempo = () => onTempoChange(currentTempo - 1)
     return (
-        <div className='tempo-ctl'>
+        <div className='tempo'>
             <button className='tempo btn' onClick={incrementTempo}>
                 +
             </button>
