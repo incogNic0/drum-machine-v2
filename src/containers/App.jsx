@@ -13,7 +13,6 @@ class App extends Component {
         this.state = {
             isPlaying: false,
             kits: { all: allKits, current: defaultKit},
-            // samples: allKits[defaultKit].instruments,
             allPadsCurrentState: {},
             currentTempo: 0,
             timing: 0,
@@ -53,8 +52,6 @@ class App extends Component {
     }
 
     onResetClick = () => {
-        // const resetState = setAllPadsInitialState(this.state.samples, 16);
-        // this.setState({allPadsCurrentState: resetState})
         this.setAllPadsInitialState();
     }
 

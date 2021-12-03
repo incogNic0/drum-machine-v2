@@ -6,14 +6,15 @@
 
 .buffer {
     display: inline-block;
-    width: 16%;
+    width: 15%;
 }
 
 .indicators {
+    padding: 0 5px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 84%;
+    width: 85%;
     margin-top: 10px;
 }
 

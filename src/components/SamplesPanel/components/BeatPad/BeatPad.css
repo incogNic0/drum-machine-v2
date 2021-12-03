@@ -9,7 +9,7 @@
 
 .beat-pad {
     display: inline-block;
-    width: 4%;
+    width: 4.8%;
     border-radius: 10%;
     background-color: var(--fourth-quarter);
 }
