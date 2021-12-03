@@ -16,6 +16,7 @@ function SamplesSection(props) {
     for(const sample in allPadsCurrentState) {
         sampleRows.push(
             < SampleRow
+                audio={allPadsCurrentState[sample].audio}
                 kits={kits}
                 onSamplePadClick={onSamplePadClick}
                 onBeatPadClick={onBeatPadClick}

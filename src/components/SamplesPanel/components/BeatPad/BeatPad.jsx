@@ -3,7 +3,8 @@ import './BeatPad.css'
 
 function BeatPad(props) {
     const {
-        kits,
+        audio,
+        // kits,
         sampleName,
         step,
         isActive,
@@ -16,14 +17,11 @@ function BeatPad(props) {
         onBeatPadClick(sampleName, step)
     }
 
-
     const activeClass = isActive ? 'active' : '';
     let playingClass = '';
 
     if(isPlaying && isActive && step === currentStep) {
-        const srcPath = kits.all[kits.current].path;
         playingClass = 'playing'
-        const audio = new Audio(srcPath + sampleName.toLowerCase() + '.wav');
         audio.currentTime = 0;
         audio.play();
     }
@@ -32,7 +30,7 @@ function BeatPad(props) {
         <div 
             className={`beat-pad btn ${activeClass} ${playingClass}`}
             onClick={(e) => {handleClickEvent()}}
-        >   
+        >
         </div>
     )
 }

@@ -6,11 +6,12 @@ import BeatPad from "../BeatPad/BeatPad";
 class SampleRow extends Component {
     constructor(props) {
         super(props);
-        this.sampleName = props.sampleName
+        this.sampleName = this.props.sampleName
     }
 
     loadBeatPads() {
         const {
+            audio,
             kits,
             sampleName,
             onBeatPadClick,
@@ -25,6 +26,7 @@ class SampleRow extends Component {
         for (const padState of padsState) {
             beatPadsArray.push(
                 < BeatPad
+                    audio={audio}
                     kits={kits}
                     sampleName={sampleName}
                     step={step}
@@ -46,6 +48,7 @@ class SampleRow extends Component {
         return (
             <div className='sample-row'>
                 < SamplePad 
+                    audio={this.audio}
                     kits={this.props.kits}
                     sampleName={this.props.sampleName}
                     onSamplePadClick={this.props.onSamplePadClick}

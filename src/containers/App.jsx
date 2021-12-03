@@ -48,7 +48,7 @@ class App extends Component {
         let nextStep = this.state.currentStep + 1
         this.setState({
             currentStep: nextStep < 16 ? nextStep : 0
-        })
+        });
     }
 
     onResetClick = () => {
@@ -56,32 +56,26 @@ class App extends Component {
     }
 
     onTempoChange = (tempo)=> {
+        const timing = (60000 / tempo / 4).toFixed(4);
         this.setState({
             currentTempo: tempo,
-            timing: (60000 / tempo / 4).toFixed(4)});
+            timing
+        });
+        if(this.state.isPlaying) {
+            clearInterval(playing);
+            playing = setInterval(() => this.playSequence(), timing);
+        }
     }
 
-    onBeatPadClick = (clickedSample, step) => {
-        const currentState = {...this.state.allPadsCurrentState};
-        const updatedState = {}
-        for (const sample in currentState) {
-            updatedState[sample] = [...currentState[sample]]
+    onBeatPadClick = (sample, step) => {
+        const updatedState = this.state.allPadsCurrentState;
+        // toggle pad activation
+        updatedState[sample][step] = !updatedState[sample][step]; // true or false
+        if(updatedState[sample][step] && !this.state.isPlaying) {
+            const audio = updatedState[sample].audio;
+            audio.currentTime = 0;
+            audio.play();
         }
-
-        // flip state of clicked pad
-        if(updatedState[clickedSample]) {
-            const isActive = updatedState[clickedSample][step];
-            if(!isActive && !this.state.isPlaying) {
-                const src = allKits[this.state.kits.current].path + clickedSample.toLowerCase() + '.wav';
-                const audio = new Audio(src);
-                audio.currentTime = 0;
-                audio.play();
-            }
-            updatedState[clickedSample][step] = !updatedState[clickedSample][step] 
-        } else {
-            throw new Error('This sample is not currently loaded: ', clickedSample)
-        }
-
         this.setState({ allPadsCurrentState: updatedState })
     }
 
@@ -92,6 +86,9 @@ class App extends Component {
     }
 
     onKitSelection = (e) => {
+        if (this.state.isPlaying) {
+            this.setState({isPlaying: false});
+        }
         const kits = {...this.state.kits};
         kits.current = e.target.value;
         this.setState({kits});
@@ -100,13 +97,14 @@ class App extends Component {
 
     setAllPadsInitialState = (kits=this.state.kits) => {
         // all pads initial state is inactive (false) by default
-        const kit = allKits[kits.current];
+        const kit = kits.all[kits.current];
         const allPads = {}
         for (const sample of kit.samples) {
             allPads[sample] = []
             for (let step=0; step<16; step++) {
                 allPads[sample].push(false)
             }
+            allPads[sample].audio = new Audio(kits.all[kits.current].path + sample.toLowerCase() + '.wav');
         }
         this.setState({allPadsCurrentState: allPads});
     }
