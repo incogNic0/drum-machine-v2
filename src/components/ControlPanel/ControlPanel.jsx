@@ -11,6 +11,7 @@ function ControlPanel( props ) {
         isPlaying,
         onPlayPause,
         kits,
+        onKitSelection,
         currentTempo,
         onTempoChange,
         onResetClick
@@ -19,7 +20,7 @@ function ControlPanel( props ) {
         <div className='control-panel'>
             < PlayBtn isPlaying={isPlaying} onPlayPause={onPlayPause} />
             < ResetBtn onResetClick={onResetClick}/>
-            < PresestsMenu kits={kits} />
+            < PresestsMenu kits={kits} onKitSelection={onKitSelection} />
             < TempoCtrl currentTempo={currentTempo} onTempoChange={onTempoChange} />
         </div>
     )

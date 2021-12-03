@@ -3,17 +3,17 @@ import './App.css';
 import ControlPanel from '../components/ControlPanel/ControlPanel'
 import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 import SamplesSection from '../components/SamplesPanel/SamplesSection';
-
+import allKits from '../assets/js/kits';
+const defaultKit = Object.keys(allKits)[0]
 let playing;
-
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
             isPlaying: false,
-            kits: ['rock','dnb','techno', 'house'],
-            samples: ['kick','kick2','snare','snare2','tom','h-hat','h-hat2','crash','ride'],
+            kits: { all: allKits, current: defaultKit},
+            // samples: allKits[defaultKit].instruments,
             allPadsCurrentState: {},
             currentTempo: 0,
             timing: 0,
@@ -23,8 +23,7 @@ class App extends Component {
 
     componentDidMount(){
         this.onTempoChange(100)
-        const pads = setAllPadsInitialState(this.state.samples, 16);
-        this.setState({allPadsCurrentState: pads})
+        this.setAllPadsInitialState();
     }
 
     onPlayStop = ()=> {
@@ -54,8 +53,9 @@ class App extends Component {
     }
 
     onResetClick = () => {
-        const resetState = setAllPadsInitialState(this.state.samples, 16);
-        this.setState({allPadsCurrentState: resetState})
+        // const resetState = setAllPadsInitialState(this.state.samples, 16);
+        // this.setState({allPadsCurrentState: resetState})
+        this.setAllPadsInitialState();
     }
 
     onTempoChange = (tempo)=> {
@@ -82,6 +82,28 @@ class App extends Component {
         this.setState({ allPadsCurrentState: updatedState })
     }
 
+    onKitSelection = (e) => {
+        const kits = {...this.state.kits};
+        kits.current = e.target.value;
+        this.setState({kits});
+        this.setAllPadsInitialState();
+    }
+
+    setAllPadsInitialState = () => {
+        // all pads initial state is inactive (false) by default
+        const kitName = this.state.kits.current;
+        const kit = allKits[kitName];
+        const allPads = []
+        for (const sample of kit.samples) {
+            allPads[sample] = []
+            for (let step=0; step<16; step++) {
+                allPads[sample].push(false)
+            }
+        }
+        this.setState({allPadsCurrentState: allPads});
+    }
+
+
     render() {
         return (
             <div className="container">
@@ -89,6 +111,7 @@ class App extends Component {
                     isPlaying={this.state.isPlaying}
                     onPlayPause={this.onPlayStop}
                     kits={this.state.kits}
+                    onKitSelection={this.onKitSelection}
                     currentTempo={this.state.currentTempo}
                     onTempoChange={this.onTempoChange}
                     onResetClick={this.onResetClick}
@@ -103,21 +126,9 @@ class App extends Component {
                     currentStep={this.state.currentStep}
                 />
             </div>
-          );
+        );
     }
 
-}
-
-function setAllPadsInitialState(samplesArr, numSteps) {
-    // all pads initial state is inactive (false) by default
-    const allPads = []
-    for (const sample of samplesArr) {
-        allPads[sample] = []
-        for (let step=0; step<numSteps; step++) {
-            allPads[sample].push(false)
-        }
-    }
-    return allPads;
 }
 
 export default App;
