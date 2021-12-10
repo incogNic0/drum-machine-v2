@@ -1,5 +1,5 @@
 import React from "react";
-import './Indicator.css'
+import '../../assets/styles/Indicator.css'
 
 function Indicator({isActive}) {
         return (

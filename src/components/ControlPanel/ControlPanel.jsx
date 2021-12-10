@@ -1,9 +1,9 @@
 import React from 'react';
-import './ControlPanel.css'
-import PlayBtn from './components/PlayBtn/PlayBtn';
-import ResetBtn from './components/ResetBtn/ResetBtn';
-import PresestsMenu from './components/PresetsMenu/PresetsMenu';
-import TempoCtrl from './components/TempCtrl/TempoCtrl';
+import '../../assets/styles/ControlPanel.css'
+import PlayBtn from './components/PlayBtn';
+import ResetBtn from './components/ResetBtn';
+import PresestsMenu from './components/PresetsMenu';
+import TempoCtrl from './components/TempoCtrl';
 
 
 function ControlPanel( props ) {

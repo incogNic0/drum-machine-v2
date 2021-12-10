@@ -1,5 +1,5 @@
 import React from "react";
-import './BeatIndicators.css'
+import '../../assets/styles/BeatIndicators.css'
 import Indicator from "./Indicator";
 
 

@@ -1,6 +1,6 @@
 import React from "react";
-import './SamplesSection.css'
-import SampleRow from "./components/SampleRow/SampleRow";
+import '../../assets/styles/SamplesSection.css'
+import SampleRow from "./components/SampleRow";
 
 function SamplesSection(props) {
     const sampleRows = [];

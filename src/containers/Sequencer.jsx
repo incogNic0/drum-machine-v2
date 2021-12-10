@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Sequencer.css';
+import '../assets/styles/Sequencer.css';
 import ControlPanel from '../components/ControlPanel/ControlPanel'
 import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 import SamplesSection from '../components/SamplesPanel/SamplesSection';
