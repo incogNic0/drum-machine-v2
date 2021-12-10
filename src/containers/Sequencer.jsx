@@ -19,13 +19,12 @@ class Sequencer extends Component {
             currentKit: this.props.defaultKit,
             allPadsCurrentState: {},
             currentTempo: 0,
-            timing: 0,
             currentStep: -1
         }
     }
 
     componentDidMount(){
-        this.onTempoChange(100)
+        this.onTempoChange(this.props.allKits[this.props.defaultKit].defaultTempo);
         this.setAllPadsInitialState(this.props.allKits[this.state.currentKit]);
     }
 
@@ -93,9 +92,10 @@ class Sequencer extends Component {
         if (this.state.isPlaying) {
             this.setState({isPlaying: false});
         }
-        const selectedKit = e.target.value;
-        this.setState({currentKit: selectedKit});
-        this.setAllPadsInitialState(this.props.allKits[selectedKit]);
+        const kitName = e.target.value;
+        const kit = this.props.allKits[kitName];
+        this.setState({currentKit: kitName, currentTempo: kit.defaultTempo});
+        this.setAllPadsInitialState(kit);
     }
 
     setAllPadsInitialState = (kit=allKits[this.state.currentKit]) => {
