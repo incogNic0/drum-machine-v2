@@ -1,63 +1,39 @@
-import React, { Component } from "react";
+import React from "react";
 import './SampleRow.css'
 import SamplePad from "../SamplePad/SamplePad";
 import BeatPad from "../BeatPad/BeatPad";
 
-class SampleRow extends Component {
-    constructor(props) {
-        super(props);
-        this.sampleName = this.props.sampleName
-    }
-
-    loadBeatPads() {
-        const {
-            audio,
-            kits,
-            sampleName,
-            onBeatPadClick,
-            isPlaying,
-            currentStep,
-            padsState
-        
-        } = this.props
-
+function SampleRow(props) {
+    const generateBeatPads = () => {
         const beatPadsArray = []
         let step = 0;
-        for (const padState of padsState) {
-            beatPadsArray.push(
-                < BeatPad
-                    audio={audio}
-                    kits={kits}
-                    sampleName={sampleName}
-                    step={step}
-                    isActive={padState}
-                    onBeatPadClick={onBeatPadClick}
-                    isPlaying={isPlaying}
-                    currentStep={currentStep}
-                    key={step}
-                />
-            )
+        for (const padState of props.allPadsState) {
+            const propsBeatPad = {
+                ...props,
+                isActive: padState,
+                step,
+                key: step
+            }
+            beatPadsArray.push(< BeatPad {...propsBeatPad} />);
             step++
         }
         return beatPadsArray;
     }
 
-
-    render() {
-        const padsArray = this.loadBeatPads();
-        return (
-            <div className='sample-row'>
-                < SamplePad 
-                    audio={this.audio}
-                    kits={this.props.kits}
-                    sampleName={this.props.sampleName}
-                    onSamplePadClick={this.props.onSamplePadClick}
-                />
-                {padsArray}
-            </div>
-        )
+    const propsSamplePad = {
+        audio: props.audio,
+        allKits: props.allKits,
+        currentKit: props.currentKit,
+        sampleName: props.sampleName,
+        onSamplePadClick: props.onSamplePadClick
     }
 
+    return (
+        <div className='sample-row'>
+            < SamplePad {...propsSamplePad} />
+            {generateBeatPads()}
+        </div>
+    )
 }
 
 export default SampleRow

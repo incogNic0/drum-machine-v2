@@ -3,31 +3,16 @@ import './SamplesSection.css'
 import SampleRow from "./components/SampleRow/SampleRow";
 
 function SamplesSection(props) {
-    const {
-        kits,
-        onSamplePadClick,
-        onBeatPadClick,
-        allPadsCurrentState,
-        isPlaying,
-        currentStep}
-    = props;
     const sampleRows = [];
-    let index = 0;
-    for(const sample in allPadsCurrentState) {
-        sampleRows.push(
-            < SampleRow
-                audio={allPadsCurrentState[sample].audio}
-                kits={kits}
-                onSamplePadClick={onSamplePadClick}
-                onBeatPadClick={onBeatPadClick}
-                sampleName={sample}
-                padsState={allPadsCurrentState[sample]}
-                isPlaying={isPlaying}
-                currentStep={currentStep}
-                key={index}
-            />
-        )
-        index++
+    for(const sample in props.allPadsCurrentState) {
+        const propsSampleRow = { 
+            ...props,
+            audio: props.allPadsCurrentState[sample].audio,
+            key: sample,
+            allPadsState: props.allPadsCurrentState[sample],
+            sampleName: sample
+        }
+        sampleRows.push(< SampleRow {...propsSampleRow} />)
     }
     return (
         <div className='samples-section'>

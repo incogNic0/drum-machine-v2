@@ -7,21 +7,33 @@ import TempoCtrl from './components/TempCtrl/TempoCtrl';
 
 
 function ControlPanel( props ) {
-    const {
-        isPlaying,
-        onPlayPause,
-        kits,
-        onKitSelection,
-        currentTempo,
-        onTempoChange,
-        onResetClick
-    } = props
+
+    const propsPlayBtn = {
+        isPlaying: props.isPlaying,
+        onPlayPause: props.onPlayPause
+    }
+
+    const propsResetBtn = {
+        onResetClick: props.onResetClick
+    }
+
+    const propsPresetMenu = {
+        allKits: props.allKits,
+        currentKit: props.currentKit,
+        onKitSelection: props.onKitSelection
+    }
+
+    const propsTempoCtrl = {
+        currentTempo: props.currentTempo,
+        onTempoChange: props.onTempoChange
+    }
+
     return (
         <div className='control-panel'>
-            < PlayBtn isPlaying={isPlaying} onPlayPause={onPlayPause} />
-            < ResetBtn onResetClick={onResetClick}/>
-            < PresestsMenu kits={kits} onKitSelection={onKitSelection} />
-            < TempoCtrl currentTempo={currentTempo} onTempoChange={onTempoChange} />
+            < PlayBtn {...propsPlayBtn} />
+            < ResetBtn {...propsResetBtn} />
+            < PresestsMenu {...propsPresetMenu} />
+            < TempoCtrl {...propsTempoCtrl} />
         </div>
     )
 }

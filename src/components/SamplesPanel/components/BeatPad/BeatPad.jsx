@@ -4,7 +4,6 @@ import './BeatPad.css'
 function BeatPad(props) {
     const {
         audio,
-        // kits,
         sampleName,
         step,
         isActive,
@@ -13,7 +12,7 @@ function BeatPad(props) {
         onBeatPadClick,
     } = props;
 
-    function handleClickEvent() {
+    const handleClickEvent = () => {
         onBeatPadClick(sampleName, step)
     }
 

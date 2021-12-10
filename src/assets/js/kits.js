@@ -21,7 +21,7 @@
 //     }
 // }
 
-const kits = {
+const allKits = {
     rock: {
        path: 'https://raw.githubusercontent.com/nickn10/beat-sequencer/master/assets/audio/rock/',
        // path: 'assets/audio/rock/',
@@ -49,4 +49,4 @@ const kits = {
     }
  }
 
-export default kits;
+export default allKits;
