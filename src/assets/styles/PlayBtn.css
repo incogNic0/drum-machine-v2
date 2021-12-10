@@ -1,0 +1,22 @@
+.paused {
+    background-color: rgb(129, 172, 43);
+    padding-left: 5px;
+}
+.playing {
+    background-color: yellowgreen;
+}
+
+.play-pause-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px black;
+}
+
+img {
+    height: 80px;
+}
+

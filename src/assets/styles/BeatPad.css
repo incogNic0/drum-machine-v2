@@ -1,0 +1,63 @@
+:root {
+    --first-quarter:  #727272;
+    --second-quarter: #4F4F4F;
+    --third-quarter: #d2d2be80;
+    --fourth-quarter: #bebed260;
+    --active: yellowgreen;
+    --playing: red;
+}
+
+.beat-pad {
+    display: inline-block;
+    width: 4.8%;
+    border-radius: 10%;
+    background-color: var(--fourth-quarter);
+}
+
+.beat-pad.btn.active {
+    background-color: var(--active);
+}
+
+.beat-pad.btn.active.playing {
+    background-color: var(--playing);
+}
+
+/* beat 1 */
+.beat-pad:nth-child(-n+5) {
+    background-color: var(--first-quarter);
+}
+
+/* beat 2 */
+.beat-pad:nth-child(6) {
+    background-color: var(--second-quarter);
+}
+.beat-pad:nth-child(7) {
+    background-color: var(--second-quarter);
+}
+.beat-pad:nth-child(8) {
+    background-color: var(--second-quarter);
+}
+.beat-pad:nth-child(9) {
+    background-color: var(--second-quarter);
+}
+
+/* beat 3 */
+.beat-pad:nth-child(10) {
+    background-color: var(--third-quarter);
+}
+.beat-pad:nth-child(11) {
+    background-color: var(--third-quarter);
+}
+.beat-pad:nth-child(12) {
+    background-color: var(--third-quarter);
+}
+.beat-pad:nth-child(13) {
+    background-color: var(--third-quarter);
+}
+
+/* beat 4 */
+.beat-pad:nth-last-child(-n+4) {
+    background-color: var(--fourth-quarter);
+}
+
+

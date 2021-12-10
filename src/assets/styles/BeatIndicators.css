@@ -1,0 +1,28 @@
+.indicator-panel {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.buffer {
+    display: inline-block;
+    width: 15%;
+}
+
+.indicators {
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 85%;
+    margin-top: 10px;
+}
+
+.beat-indicator:nth-child(1) {
+    height: 16px;
+    width: 16px;
+}
+.beat-indicator:nth-child(4n+5) {
+    height: 16px;
+    width: 16px;
+}

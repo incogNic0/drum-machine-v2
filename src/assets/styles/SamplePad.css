@@ -1,0 +1,16 @@
+.sample-pad {
+    display: inline-block;
+    width: 15%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-image: url('../images/brushed-aluminium.jpg');
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 14px 5px;
+    color: whitesmoke;
+}
+
+.sample-pad:active {
+    transform: scale(.98);
+}
