@@ -1,28 +1,33 @@
 import React from "react";
 import '../../../assets/styles/BeatPad.css'
 
+// props = {
+//     onStepPadClick: props.onStepPadClick,
+//     sampleData: props.sampleData,
+//     currentStep: props.currentStep,
+//     isPlaying: props.isPlaying,
+//     isActive: stepState,
+//     step,
+// }
+
 function BeatPad(props) {
     const {
-        audio,
-        sampleName,
+        sampleData,
         step,
         isActive,
         isPlaying,
         currentStep,
-        onBeatPadClick,
+        onStepPadClick,
     } = props;
 
     const handleClickEvent = () => {
-        onBeatPadClick(sampleName, step)
+        onStepPadClick(sampleData.name, step)
     }
-
     const activeClass = isActive ? 'active' : '';
     let playingClass = '';
 
     if(isPlaying && isActive && step === currentStep) {
-        playingClass = 'playing'
-        audio.currentTime = 0;
-        audio.play();
+        playingClass = 'playing';
     }
 
     return (

@@ -4,6 +4,9 @@ import ControlPanel from '../components/ControlPanel/ControlPanel'
 import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 import SamplesSection from '../components/SamplesPanel/SamplesSection';
 import allKits from '../assets/js/kits';
+import { handlePlayStop, updateTempo } from '../assets/js/playback';
+import { resetSamplePattern, getKitAudio } from '../assets/js/helpers';
+import KitData from '../assets/js/KitData';
 
 let playing;
 
@@ -16,26 +19,36 @@ class Sequencer extends Component {
         super(props);
         this.state = {
             isPlaying: false,
-            currentKit: this.props.defaultKit,
+            kitName: this.props.defaultKit,
             allPadsCurrentState: {},
             currentTempo: 0,
-            currentStep: -1
+            currentStep: -1,
+            kitData: null // { sampleName: {pattern =[], audio: audioBuffer }, ...}
         }
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         this.onTempoChange(this.props.allKits[this.props.defaultKit].defaultTempo);
-        this.setAllPadsInitialState(this.props.allKits[this.state.currentKit]);
+        this.setupKit(allKits[this.props.defaultKit]);
+    }
+
+    setupKit = kit => {
+        const newKit = new KitData(kit.path, ...kit.samples);
+        this.setState({ kitData: newKit });
+        this.loadKitAudio(newKit);
+    }
+
+    loadKitAudio = async kit => {
+        const updatedKit = await getKitAudio(kit);
+        this.setState({kitData: updatedKit});
     }
 
     onPlayPause = ()=> {
-        clearInterval(playing)
-        if(this.state.isPlaying) {
-            this.setState({isPlaying: false, currentStepPads: []})
-        } else {
-            this.setState({ isPlaying: true, currentStep: -1 })   
-            playing = setInterval(() => this.playSequence(), this.getTiming())
-        }
+        const handlePlayback = handlePlayStop.bind(this.state);
+        handlePlayback();
+        this.setState((prevState) => ({
+            isPlaying: !prevState.isPlaying
+        }));
     }
 
     playSequence = () => {
@@ -59,10 +72,13 @@ class Sequencer extends Component {
     }
 
     onResetClick = () => {
-        this.setAllPadsInitialState();
+        if(this.state.isPlaying) this.setState({isPlaying: false});
+        const resetKit = resetSamplePattern(this.state.kitData);
+        this.setState({ kitData: resetKit});
     }
 
     onTempoChange = (tempo)=> {
+        updateTempo(tempo);
         this.setState({currentTempo: tempo});
         if(this.state.isPlaying) {
             clearInterval(playing);
@@ -70,16 +86,17 @@ class Sequencer extends Component {
         }
     }
 
-    onBeatPadClick = (sample, step) => {
-        const updatedState = {...this.state.allPadsCurrentState};
-        // toggle pad activation
-        updatedState[sample][step] = !updatedState[sample][step]; // true or false
-        if(updatedState[sample][step] && !this.state.isPlaying) {
-            const audio = updatedState[sample].audio;
+    onStepPadClick = (sampleName, step) => {
+        const updatedKit = {...this.state.kitData};
+        const updatedSample = {...updatedKit[sampleName]};
+        updatedSample.pattern[step] = !updatedSample.pattern[step]; // toggle boolean
+        if(updatedSample.pattern[step] && !this.state.isPlaying) {
+            const audio = document.querySelector(`#${sampleName}`);
             audio.currentTime = 0;
             audio.play();
         }
-        this.setState({ allPadsCurrentState: updatedState })
+        updatedKit[sampleName] = updatedSample;
+        this.setState({ kitData: updatedKit });
     }
 
     onSamplePadClick = (e) => {
@@ -130,13 +147,11 @@ class Sequencer extends Component {
         }
 
         const propsSampleSection = {
-            allPadsCurrentState: this.state.allPadsCurrentState,
-            allKits : this.props.allKits,
-            currentKit: this.state.currentKit,
+            kitData: this.state.kitData,
             isPlaying: this.state.isPlaying,
             currentStep: this.state.currentStep,
             onSamplePadClick: this.onSamplePadClick,
-            onBeatPadClick: this.onBeatPadClick,
+            onStepPadClick: this.onStepPadClick,
         }
 
         return (

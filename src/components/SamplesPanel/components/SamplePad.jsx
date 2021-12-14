@@ -2,11 +2,11 @@ import React from "react";
 import '../../../assets/styles/SamplePad.css';
 
 
-function SamplePad({ sampleName, onSamplePadClick, allKits, currentKit }) {
+function SamplePad({ sampleData, onSamplePadClick }) {
     return (
         <div className='sample-pad btn' onClick={onSamplePadClick}>
-            <audio src={allKits[currentKit].path + sampleName.toLowerCase() + '.wav'}></audio>
-            {sampleName.toUpperCase()}
+            <audio src={sampleData.url} id={sampleData.name} crossOrigin="anonymous"></audio>
+            {sampleData.name}
         </div>
     )
 }

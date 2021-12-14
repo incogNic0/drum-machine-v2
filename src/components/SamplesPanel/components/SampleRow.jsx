@@ -3,35 +3,43 @@ import '../../../assets/styles/SampleRow.css'
 import SamplePad from "./SamplePad";
 import BeatPad from "./BeatPad";
 
+// props = {
+    // sampleData: {kitData[sample], name: sample},
+    // isPlaying,
+    // currentStep,
+    // onSamplePadClick,
+    // onStepPadClick
+// }
+
 function SampleRow(props) {
-    const generateBeatPads = () => {
-        const beatPadsArray = []
+    const generateStepPads = () => {
+        const stepPadsArray = []
         let step = 0;
-        for (const padState of props.allPadsState) {
-            const propsBeatPad = {
-                ...props,
-                isActive: padState,
+        for (const stepState of props.sampleData.pattern) {
+            const propsStepPad = {
+                onStepPadClick: props.onStepPadClick,
+                sampleData: props.sampleData,
+                currentStep: props.currentStep,
+                isPlaying: props.isPlaying,
+                isActive: stepState,
                 step,
                 key: step
             }
-            beatPadsArray.push(< BeatPad {...propsBeatPad} />);
+            stepPadsArray.push(< BeatPad {...propsStepPad} />);
             step++
         }
-        return beatPadsArray;
+        return stepPadsArray;
     }
 
     const propsSamplePad = {
-        audio: props.audio,
-        allKits: props.allKits,
-        currentKit: props.currentKit,
-        sampleName: props.sampleName,
+        sampleData: props.sampleData,
         onSamplePadClick: props.onSamplePadClick
     }
 
     return (
         <div className='sample-row'>
             < SamplePad {...propsSamplePad} />
-            {generateBeatPads()}
+            {generateStepPads()}
         </div>
     )
 }
