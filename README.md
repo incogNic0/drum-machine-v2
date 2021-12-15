@@ -7,3 +7,4 @@ Current kits include:
     Techno,
     Drum N' Bass
 
+<a href="https://incognic0.github.io/step-sequencer/">Demo</a>
