@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../../assets/styles/PresetsMenu.css'
 
-function PresestsMenu({allKits, kitName, onKitSelection}) {
+function PresestsMenu({kits, kitData, onKitSelection}) {
     const kitOptions = [];
-    for (const kit in allKits) {
+    const kitName = kitData.name
+    for (const kit of kits) {
         const kitOption  = <option value={kit}  key={kit} >{kit} </option>
         kitOptions.push(kitOption);
     }

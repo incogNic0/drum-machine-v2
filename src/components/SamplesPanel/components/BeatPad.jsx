@@ -3,16 +3,16 @@ import { PlayerContext } from "../../../contexts/PlayerContext";
 import '../../../assets/styles/BeatPad.css'
 
 
-function BeatPad({onStepPadClick, sampleData, isActive, step}) {
+function BeatPad({onStepPadClick, sampleName, stepNum ,isActive}) {
     const context = useContext(PlayerContext);
 
     const handleClickEvent = () => {
-        onStepPadClick(sampleData.name, step)
+        onStepPadClick(sampleName, stepNum)
     }
     const activeClass = isActive ? 'active' : '';
     let playingClass = '';
 
-    if(context.isPlaying && isActive && step === context.currentStep) {
+    if(context.isPlaying && stepNum === context.currentStep) {
         playingClass = 'playing';
     }
 

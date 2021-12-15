@@ -5,34 +5,38 @@ import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 import SamplesSection from '../components/SamplesPanel/SamplesSection';
 import allKits from '../assets/js/kits';
 import { handlePlayStop } from '../assets/js/playback';
-import { resetSamplePattern, getKitAudio } from '../assets/js/helpers';
+import { resetSamplePattern, getKitAudio, updateSamplePattern } from '../assets/js/helpers';
 import KitData from '../assets/js/KitData';
 import { PlayerContext } from '../contexts/PlayerContext';
 
 class Sequencer extends Component {
     static defaultProps = {
-        allKits,
-        defaultKit: Object.keys(allKits)[2]
+        defaultKit: 'house'
     }
     static contextType = PlayerContext;
 
-    constructor(props,contextType) {
-        super(props);
+    constructor(props) {
+        super();
         this.state = {
-            kitName: this.props.defaultKit,
+            kits: [],
             currentTempo: 0,
-            kitData: null // { sampleName: {pattern =[true or false x 16], audio: audioBuffer }, ...}
+            kitData: null
         };
     }
 
     async componentDidMount(){
-        this.setupKit(allKits[this.props.defaultKit]);
+        const kit = this.getSelectedKit(this.props.defaultKit)
+        this.setState({kits: allKits.map(kit => kit.name)});
+        this.setupKit(kit);
+    }
+
+    getSelectedKit = kitName => {
+        return allKits.filter( kit => kit.name === kitName)[0];
     }
 
     setupKit = kit => {
-        const { path, defaultTempo, samples } = kit;
-        const newKit = new KitData(path, ...samples);
-        this.setState({ kitData: newKit, currentTempo: defaultTempo});
+        const newKit = new KitData(kit);
+        this.setState({ kitData: newKit, currentTempo: newKit.defaultTempo});
         this.loadKitAudio(newKit);
     }
 
@@ -56,7 +60,7 @@ class Sequencer extends Component {
             this.onPlayPause();
         }
         const kitName = e.target.value;
-        const kit = this.props.allKits[kitName];
+        const kit = this.getSelectedKit(kitName);
         this.setupKit(kit);
     }
 
@@ -72,16 +76,8 @@ class Sequencer extends Component {
         this.setState({currentTempo: tempo});
     }
 
-    onStepPadClick = (sampleName, step) => {
-        const updatedKit = {...this.state.kitData};
-        const updatedSample = {...updatedKit[sampleName]};
-        updatedSample.pattern[step] = !updatedSample.pattern[step]; // toggle boolean
-        if(updatedSample.pattern[step] && !this.context.isPlaying) {
-            const audio = document.querySelector(`#${sampleName}`);
-            audio.currentTime = 0;
-            audio.play();
-        }
-        updatedKit[sampleName] = updatedSample;
+    onStepPadClick = (sampleName, stepNum) => {
+        const updatedKit = updateSamplePattern.call(this, sampleName, stepNum);
         this.setState({ kitData: updatedKit });
     }
 
@@ -94,8 +90,8 @@ class Sequencer extends Component {
 
     render() {
         const propsCtrlPanel = {
-            allKits: this.props.allKits,
-            kitName: this.state.kitName,
+            kits: this.state.kits,
+            kitData: this.state.kitData || '',
             currentTempo: this.state.currentTempo,
             onPlayPause: this.onPlayPause,
             onTempoChange: this.onTempoChange,

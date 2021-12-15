@@ -67,11 +67,10 @@ function scheduler() {
 // schedule playback for all active samples in the next step sequence
 function scheduleSamples(step, startTime) {
     stepsQueue.push({ step, startTime });
-    for (const sample in kitState) {
-        const currentSample = kitState[sample];
-        const isActive = currentSample.pattern[step];
+    for (const sample of kitState.samples) {
+        const isActive = sample.pattern[step];
         if(isActive) {
-            playback(currentSample.audio, startTime);
+            playback(sample.audio, startTime);
         }
     }
 }

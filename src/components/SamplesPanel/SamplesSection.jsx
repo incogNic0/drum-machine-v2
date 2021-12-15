@@ -4,19 +4,18 @@ import SampleRow from "./components/SampleRow";
 
 
 function SamplesSection({kitData, onStepPadClick, onSamplePadClick}) {
-    const sampleRows = [];
-    for(const sample in kitData) {
-        const propsSampleRow = {
-            sampleData: {...kitData[sample], name: sample},
-            onSamplePadClick: onSamplePadClick,
-            onStepPadClick: onStepPadClick,
-            key: sample,
-        }
-        sampleRows.push(< SampleRow {...propsSampleRow} />)
-    }
+    if(!kitData) return <div>Loading...</div>;
     return (
         <div className='samples-section'>
-            {sampleRows}
+            {kitData.samples.map( sample => {
+                const props = {
+                    sample,
+                    onSamplePadClick,
+                    onStepPadClick,
+                    key: sample.name,
+                }
+                return < SampleRow {...props} />
+            })}
         </div>
     )
 }

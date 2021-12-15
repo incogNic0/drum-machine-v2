@@ -1,11 +1,15 @@
 export default class KitData {
-    constructor(path, ...args) {
-        args.forEach(sample => {
-            this[sample] = {
+    constructor({name, path, defaultTempo, samples}) {
+        this.name = name;
+        this.defaultTempo = defaultTempo;
+        this.samples = samples.map( sampleName => {
+            const sample = {
+                name: sampleName,
                 pattern: Array.from({ length: 16 }, () => false),
                 audio: null,
-                url: path + sample.toLowerCase() + '.wav'
+                url: path + sampleName.toLowerCase() + '.wav'
             }
-        });
+            return sample
+        })
     }
 }
