@@ -14,10 +14,10 @@ export function updateTempo(newTempo) {
 }
 
 export function handlePlayStop() {
-    tempo = this.currentTempo;
-    KitState = this.kitData;
+    tempo = this.state.currentTempo;
+    KitState = this.state.kitData;
     if(audioContext.state === 'suspended') audioContext.resume();
-    if(!this.isPlaying) {
+    if(!this.state.isPlaying) {
         currentStep = 0;
         nextStepTime = audioContext.currentTime;
         scheduler(); // handles scheduling and playback
