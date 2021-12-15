@@ -1,24 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PlayerContext } from "../../../contexts/PlayerContext";
 import '../../../assets/styles/BeatPad.css'
 
-// props = {
-//     onStepPadClick: props.onStepPadClick,
-//     sampleData: props.sampleData,
-//     currentStep: props.currentStep,
-//     isPlaying: props.isPlaying,
-//     isActive: stepState,
-//     step,
-// }
 
-function BeatPad(props) {
-    const {
-        sampleData,
-        step,
-        isActive,
-        isPlaying,
-        currentStep,
-        onStepPadClick,
-    } = props;
+function BeatPad({onStepPadClick, sampleData, isActive, step}) {
+    const context = useContext(PlayerContext);
 
     const handleClickEvent = () => {
         onStepPadClick(sampleData.name, step)
@@ -26,7 +12,7 @@ function BeatPad(props) {
     const activeClass = isActive ? 'active' : '';
     let playingClass = '';
 
-    if(isPlaying && isActive && step === currentStep) {
+    if(context.isPlaying && isActive && step === context.currentStep) {
         playingClass = 'playing';
     }
 

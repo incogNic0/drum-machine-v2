@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import '../../assets/styles/BeatIndicators.css'
 import Indicator from "./Indicator";
+import { PlayerContext } from '../../contexts/PlayerContext';
 
 
-
-function BeatIndicators({isPlaying, currentStep}){
+function BeatIndicators(){
+    const context = useContext(PlayerContext);
     const indicatorsArray = [];
 
     for (let i=0; i<16; i++) {
         indicatorsArray.push(
             <Indicator 
-                isActive={isPlaying && currentStep === i} 
+                isActive={context.isPlaying && context.currentStep === i} 
                 key={i}
             />
         )

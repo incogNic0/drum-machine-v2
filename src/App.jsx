@@ -1,9 +1,13 @@
 import Sequencer from './containers/Sequencer';
+import { PlayerProvider } from './contexts/PlayerContext';
+
 
 function App() {
   return (
     <div className="App">
-        < Sequencer />
+        <PlayerProvider>
+            < Sequencer />
+        </PlayerProvider>
     </div>
   );
 }

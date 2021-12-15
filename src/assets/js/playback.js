@@ -8,14 +8,13 @@ let stepsQueue = []
 const audioContext = new AudioContext() ||  new window.webkitAudioContext();
 
 
-export function handlePlayStop() {
+export function handlePlayStop(context) {
     kitState = this.state.kitData;
     if(audioContext.state === 'suspended') audioContext.resume();
-    if(!this.state.isPlaying) {
-        currentStep = this.state.currentStep;
+    if(!context.isPlaying) {
+        currentStep = context.currentStep;
         nextStepTime = audioContext.currentTime;
-        const startScheduler = scheduler.bind(this);
-        startScheduler();
+        scheduler.call(this);
     } else {
         clearTimeout(timerID);
     }
@@ -37,19 +36,29 @@ function playback(audio, startTime) {
 }
 
 
-function incrementStep(tempo) {
-    const secondsPerBeat = 60.0 / tempo / 4; // sixteenth notes
+function incrementStep(step) {
+    const secondsPerBeat = 60.0 / this.state.currentTempo / 4; // sixteenth notes
     nextStepTime += secondsPerBeat; // when the next step should play
     currentStep++;
     if (currentStep === 16) currentStep = 0; // reset after 4 quarter notes
 }
 
+// let lastStep = 15;
 function scheduler() {
-    while (nextStepTime < audioContext.currentTime + scheduleAheadTime ) {
+    const currentTime = audioContext.currentTime
+    // Schedule Audio Playback
+    if (nextStepTime < currentTime + scheduleAheadTime ) {
         scheduleSamples(currentStep, nextStepTime); // controls audio playback
-        this.updateCurrentStep(currentStep); // controls animations
-        incrementStep(this.state.currentTempo);
+        incrementStep.call(this);
+    } 
+
+    // Increment curretnStep at specified time
+    if (stepsQueue.length && stepsQueue[0].startTime < currentTime) {
+        let step = stepsQueue[0].step;
+        stepsQueue.shift();   // remove note from queue
+        this.updateCurrentStep(step);
     }
+
     // continues to call scheduler every 25ms (lookahead) 
     timerID = setTimeout(scheduler.bind(this), lookahead);
 }

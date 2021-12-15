@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../assets/styles/PresetsMenu.css'
 
-function PresestsMenu({allKits, currentKit, onKitSelection}) {
+function PresestsMenu({allKits, kitName, onKitSelection}) {
     const kitOptions = [];
     for (const kit in allKits) {
         const kitOption  = <option value={kit}  key={kit} >{kit} </option>
@@ -9,7 +9,7 @@ function PresestsMenu({allKits, currentKit, onKitSelection}) {
     }
     return (
         <div className='presets-menu btn'>
-            <select value={currentKit} onChange={onKitSelection} id="kits" className='btn'>
+            <select value={kitName} onChange={onKitSelection} id="kits" className='btn'>
                 {kitOptions}
             </select>
         </div>

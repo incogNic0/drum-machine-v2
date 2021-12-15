@@ -9,7 +9,6 @@ import TempoCtrl from './components/TempoCtrl';
 function ControlPanel( props ) {
 
     const propsPlayBtn = {
-        isPlaying: props.isPlaying,
         onPlayPause: props.onPlayPause
     }
 
@@ -19,7 +18,7 @@ function ControlPanel( props ) {
 
     const propsPresetMenu = {
         allKits: props.allKits,
-        currentKit: props.currentKit,
+        kitName: props.kitName,
         onKitSelection: props.onKitSelection
     }
 

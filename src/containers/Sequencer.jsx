@@ -7,27 +7,25 @@ import allKits from '../assets/js/kits';
 import { handlePlayStop } from '../assets/js/playback';
 import { resetSamplePattern, getKitAudio } from '../assets/js/helpers';
 import KitData from '../assets/js/KitData';
-
+import { PlayerContext } from '../contexts/PlayerContext';
 
 class Sequencer extends Component {
     static defaultProps = {
         allKits,
-        defaultKit: Object.keys(allKits)[0]
+        defaultKit: Object.keys(allKits)[2]
     }
-    constructor(props) {
+    static contextType = PlayerContext;
+
+    constructor(props,contextType) {
         super(props);
         this.state = {
-            isPlaying: false,
             kitName: this.props.defaultKit,
-            currentStep: 0,
             currentTempo: 0,
-            kitData: null // { sampleName: {pattern =[], audio: audioBuffer }, ...}
+            kitData: null // { sampleName: {pattern =[true or false x 16], audio: audioBuffer }, ...}
         };
-        this.handlePlayStop = handlePlayStop.bind(this);
     }
 
     async componentDidMount(){
-        this.onTempoChange(this.props.allKits[this.props.defaultKit].defaultTempo);
         this.setupKit(allKits[this.props.defaultKit]);
     }
 
@@ -44,21 +42,18 @@ class Sequencer extends Component {
     }
 
     onPlayPause = ()=> {
-        this.handlePlayStop(); // handles audio playback & animation
-        this.setState((prevState) => ({
-            isPlaying: !prevState.isPlaying
-        }));
-        this.setState({ currentStep: 0 });
+        handlePlayStop.call(this, this.context);
+        this.context.togglePlaying();
+        this.context.updateCurrentStep(0);
     }
 
     updateCurrentStep = step => {
-        this.setState({ currentStep: step })
+        this.context.updateCurrentStep(step);
     }
 
     onKitSelection = (e) => {
-        if (this.state.isPlaying) {
-            this.handlePlayStop();
-            this.setState({isPlaying: false});
+        if (this.context.isPlaying) {
+            this.onPlayPause();
         }
         const kitName = e.target.value;
         const kit = this.props.allKits[kitName];
@@ -66,16 +61,14 @@ class Sequencer extends Component {
     }
 
     onResetClick = () => {
-        if(this.state.isPlaying) {
-            this.handlePlayStop();
-            this.setState({isPlaying: false})
+        if(this.context.isPlaying) {
+            this.onPlayPause();
         };
         const resetKit = resetSamplePattern(this.state.kitData);
         this.setState({ kitData: resetKit});
     }
 
     onTempoChange = (tempo)=> {
-        // updateTempo(tempo);
         this.setState({currentTempo: tempo});
     }
 
@@ -83,7 +76,7 @@ class Sequencer extends Component {
         const updatedKit = {...this.state.kitData};
         const updatedSample = {...updatedKit[sampleName]};
         updatedSample.pattern[step] = !updatedSample.pattern[step]; // toggle boolean
-        if(updatedSample.pattern[step] && !this.state.isPlaying) {
+        if(updatedSample.pattern[step] && !this.context.isPlaying) {
             const audio = document.querySelector(`#${sampleName}`);
             audio.currentTime = 0;
             audio.play();
@@ -101,9 +94,8 @@ class Sequencer extends Component {
 
     render() {
         const propsCtrlPanel = {
-            isPlaying: this.state.isPlaying,
             allKits: this.props.allKits,
-            currentKit: this.state.currentKit,
+            kitName: this.state.kitName,
             currentTempo: this.state.currentTempo,
             onPlayPause: this.onPlayPause,
             onTempoChange: this.onTempoChange,
@@ -111,15 +103,8 @@ class Sequencer extends Component {
             onKitSelection: this.onKitSelection
         }
 
-        const propsBeatIndicators = {
-            isPlaying: this.state.isPlaying,
-            currentStep: this.state.currentStep
-        }
-
         const propsSampleSection = {
             kitData: this.state.kitData,
-            isPlaying: this.state.isPlaying,
-            currentStep: this.state.currentStep,
             onSamplePadClick: this.onSamplePadClick,
             onStepPadClick: this.onStepPadClick,
         }
@@ -127,7 +112,7 @@ class Sequencer extends Component {
         return (
             <div className="container">
                 < ControlPanel {...propsCtrlPanel} />
-                < BeatIndicators {...propsBeatIndicators} />
+                < BeatIndicators />
                 < SamplesSection {...propsSampleSection} />
             </div>
         );
