@@ -1,26 +1,21 @@
-const lookahead = 25.0;
-const scheduleAheadTime = 0.1;
-let tempo;
-let currentStep = 0;
-let nextStepTime = 0.0; // when the next note is due.
+const lookahead = 25.0; // milliseconds
+const scheduleAheadTime = 0.1; // seconds
+let nextStepTime = 0.0;
+let currentStep;
 let timerID;
-let KitState;
-
+let kitState;
+let stepsQueue = []
 const audioContext = new AudioContext() ||  new window.webkitAudioContext();
 
 
-export function updateTempo(newTempo) {
-    tempo = newTempo;
-}
-
 export function handlePlayStop() {
-    tempo = this.state.currentTempo;
-    KitState = this.state.kitData;
+    kitState = this.state.kitData;
     if(audioContext.state === 'suspended') audioContext.resume();
     if(!this.state.isPlaying) {
-        currentStep = 0;
+        currentStep = this.state.currentStep;
         nextStepTime = audioContext.currentTime;
-        scheduler(); // handles scheduling and playback
+        const startScheduler = scheduler.bind(this);
+        startScheduler();
     } else {
         clearTimeout(timerID);
     }
@@ -42,28 +37,29 @@ function playback(audio, startTime) {
 }
 
 
-function incrementStep() {
+function incrementStep(tempo) {
     const secondsPerBeat = 60.0 / tempo / 4; // sixteenth notes
     nextStepTime += secondsPerBeat; // when the next step should play
     currentStep++;
     if (currentStep === 16) currentStep = 0; // reset after 4 quarter notes
 }
 
-
 function scheduler() {
     while (nextStepTime < audioContext.currentTime + scheduleAheadTime ) {
-        scheduleSamples(currentStep, nextStepTime);
-        incrementStep();
+        scheduleSamples(currentStep, nextStepTime); // controls audio playback
+        this.updateCurrentStep(currentStep); // controls animations
+        incrementStep(this.state.currentTempo);
     }
     // continues to call scheduler every 25ms (lookahead) 
-    timerID = setTimeout(scheduler, lookahead);
+    timerID = setTimeout(scheduler.bind(this), lookahead);
 }
 
 
 // schedule playback for all active samples in the next step sequence
 function scheduleSamples(step, startTime) {
-    for (const sample in KitState) {
-        const currentSample = KitState[sample];
+    stepsQueue.push({ step, startTime });
+    for (const sample in kitState) {
+        const currentSample = kitState[sample];
         const isActive = currentSample.pattern[step];
         if(isActive) {
             playback(currentSample.audio, startTime);

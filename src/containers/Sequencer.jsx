@@ -4,7 +4,7 @@ import ControlPanel from '../components/ControlPanel/ControlPanel'
 import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 import SamplesSection from '../components/SamplesPanel/SamplesSection';
 import allKits from '../assets/js/kits';
-import { handlePlayStop, updateTempo } from '../assets/js/playback';
+import { handlePlayStop } from '../assets/js/playback';
 import { resetSamplePattern, getKitAudio } from '../assets/js/helpers';
 import KitData from '../assets/js/KitData';
 
@@ -19,10 +19,11 @@ class Sequencer extends Component {
         this.state = {
             isPlaying: false,
             kitName: this.props.defaultKit,
+            currentStep: 0,
             currentTempo: 0,
             kitData: null // { sampleName: {pattern =[], audio: audioBuffer }, ...}
         };
-        this.handlePlayStop = handlePlayStop.bind(this)
+        this.handlePlayStop = handlePlayStop.bind(this);
     }
 
     async componentDidMount(){
@@ -47,6 +48,11 @@ class Sequencer extends Component {
         this.setState((prevState) => ({
             isPlaying: !prevState.isPlaying
         }));
+        this.setState({ currentStep: 0 });
+    }
+
+    updateCurrentStep = step => {
+        this.setState({ currentStep: step })
     }
 
     onKitSelection = (e) => {
@@ -69,7 +75,7 @@ class Sequencer extends Component {
     }
 
     onTempoChange = (tempo)=> {
-        updateTempo(tempo);
+        // updateTempo(tempo);
         this.setState({currentTempo: tempo});
     }
 
@@ -107,11 +113,13 @@ class Sequencer extends Component {
 
         const propsBeatIndicators = {
             isPlaying: this.state.isPlaying,
+            currentStep: this.state.currentStep
         }
 
         const propsSampleSection = {
             kitData: this.state.kitData,
             isPlaying: this.state.isPlaying,
+            currentStep: this.state.currentStep,
             onSamplePadClick: this.onSamplePadClick,
             onStepPadClick: this.onStepPadClick,
         }
