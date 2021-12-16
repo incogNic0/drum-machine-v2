@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/step-sequencer/static/css/main.93ec0179.chunk.css",
-    "main.js": "/step-sequencer/static/js/main.bfa8d80e.chunk.js",
-    "main.js.map": "/step-sequencer/static/js/main.bfa8d80e.chunk.js.map",
+    "main.js": "/step-sequencer/static/js/main.39cb3369.chunk.js",
+    "main.js.map": "/step-sequencer/static/js/main.39cb3369.chunk.js.map",
     "runtime-main.js": "/step-sequencer/static/js/runtime-main.4e235328.js",
     "runtime-main.js.map": "/step-sequencer/static/js/runtime-main.4e235328.js.map",
     "static/js/2.87d25201.chunk.js": "/step-sequencer/static/js/2.87d25201.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.4e235328.js",
     "static/js/2.87d25201.chunk.js",
     "static/css/main.93ec0179.chunk.css",
-    "static/js/main.bfa8d80e.chunk.js"
+    "static/js/main.39cb3369.chunk.js"
   ]
 }
