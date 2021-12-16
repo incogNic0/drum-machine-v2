@@ -7,6 +7,8 @@ export default class KitData {
                 name: sampleName,
                 pattern: Array.from({ length: 16 }, () => false),
                 audio: null,
+                gainValue: 1,
+                panValue: 0,
                 url: path + sampleName.toLowerCase() + '.wav'
             }
             return sample

@@ -3,7 +3,7 @@ import '../../assets/styles/SamplesSection.css'
 import SampleRow from "./components/SampleRow";
 
 
-function SamplesSection({kitData, onStepPadClick, onSamplePadClick}) {
+function SamplesSection({kitData, onStepPadClick, onSamplePadClick, onGainChange}) {
     if(!kitData) return <div>Loading...</div>;
     return (
         <div className='samples-section'>
@@ -12,6 +12,7 @@ function SamplesSection({kitData, onStepPadClick, onSamplePadClick}) {
                     sample,
                     onSamplePadClick,
                     onStepPadClick,
+                    onGainChange,
                     key: sample.name,
                 }
                 return < SampleRow {...props} />

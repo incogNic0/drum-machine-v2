@@ -3,23 +3,20 @@ const scheduleAheadTime = 0.1; // seconds
 let nextStepTime = 0.0;
 let currentStep;
 let timerID;
-let kitState;
 let stepsQueue = []
 const audioContext = new AudioContext() ||  new window.webkitAudioContext();
 
 
-export function handlePlayStop(context) {
-    kitState = this.state.kitData;
+export function handlePlayStop() {
     if(audioContext.state === 'suspended') audioContext.resume();
-    if(!context.isPlaying) {
-        currentStep = context.currentStep;
+    if(!this.context.isPlaying) {
+        currentStep = this.context.currentStep;
         nextStepTime = audioContext.currentTime;
         scheduler.call(this);
     } else {
         clearTimeout(timerID);
     }
 }
-
 
 export async function getFile(filepath) {
     const res = await fetch(filepath);
@@ -28,19 +25,31 @@ export async function getFile(filepath) {
     return audioBuffer;
 }
 
-function playback(audio, startTime) {
+export function playback(sample, startTime) {
     const playSound = audioContext.createBufferSource();
-    playSound.buffer = audio;
-    playSound.connect(audioContext.destination);
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value =  sample.gainValue;
+    playSound.buffer = sample.audio;
+    playSound.connect(gainNode).connect(audioContext.destination);
     playSound.start(startTime); // will play when audioContext.currentTime === startTime
 }
 
-
-function incrementStep(step) {
+function incrementStep() {
     const secondsPerBeat = 60.0 / this.state.currentTempo / 4; // sixteenth notes
     nextStepTime += secondsPerBeat; // when the next step should play
     currentStep++;
     if (currentStep === 16) currentStep = 0; // reset after 4 quarter notes
+}
+
+// schedule playback for all active samples in the next step sequence
+function scheduleSamples(step, startTime) {
+    stepsQueue.push({ step, startTime });
+    for (const sample of this.state.kitData.samples) {
+        const isActive = sample.pattern[step];
+        if(isActive) {
+            playback(sample, startTime);
+        }
+    }
 }
 
 // let lastStep = 15;
@@ -48,7 +57,7 @@ function scheduler() {
     const currentTime = audioContext.currentTime
     // Schedule Audio Playback
     if (nextStepTime < currentTime + scheduleAheadTime ) {
-        scheduleSamples(currentStep, nextStepTime); // controls audio playback
+        scheduleSamples.call(this, currentStep, nextStepTime); // controls audio playback
         incrementStep.call(this);
     } 
 
@@ -63,14 +72,3 @@ function scheduler() {
     timerID = setTimeout(scheduler.bind(this), lookahead);
 }
 
-
-// schedule playback for all active samples in the next step sequence
-function scheduleSamples(step, startTime) {
-    stepsQueue.push({ step, startTime });
-    for (const sample of kitState.samples) {
-        const isActive = sample.pattern[step];
-        if(isActive) {
-            playback(sample.audio, startTime);
-        }
-    }
-}

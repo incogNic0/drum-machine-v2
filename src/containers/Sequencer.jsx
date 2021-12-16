@@ -5,7 +5,7 @@ import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
 import SamplesSection from '../components/SamplesPanel/SamplesSection';
 import allKits from '../assets/js/kits';
 import { handlePlayStop } from '../assets/js/playback';
-import { resetSamplePattern, getKitAudio, updateSamplePattern } from '../assets/js/helpers';
+import { resetSamplePattern, getKitAudio, updateSample, playSample } from '../assets/js/helpers';
 import KitData from '../assets/js/KitData';
 import { PlayerContext } from '../contexts/PlayerContext';
 
@@ -22,6 +22,7 @@ class Sequencer extends Component {
             currentTempo: 0,
             kitData: null
         };
+        this.updateSample = updateSample.bind(this);
     }
 
     async componentDidMount(){
@@ -46,7 +47,7 @@ class Sequencer extends Component {
     }
 
     onPlayPause = ()=> {
-        handlePlayStop.call(this, this.context);
+        handlePlayStop.call(this);
         this.context.togglePlaying();
         this.context.updateCurrentStep(0);
     }
@@ -55,11 +56,11 @@ class Sequencer extends Component {
         this.context.updateCurrentStep(step);
     }
 
-    onKitSelection = (e) => {
+    onKitSelection = (evt) => {
         if (this.context.isPlaying) {
             this.onPlayPause();
         }
-        const kitName = e.target.value;
+        const kitName = evt.target.value;
         const kit = this.getSelectedKit(kitName);
         this.setupKit(kit);
     }
@@ -77,14 +78,17 @@ class Sequencer extends Component {
     }
 
     onStepPadClick = (sampleName, stepNum) => {
-        const updatedKit = updateSamplePattern.call(this, sampleName, stepNum);
+        const updatedKit = this.updateSample(sampleName, 'pattern', stepNum);
         this.setState({ kitData: updatedKit });
     }
 
-    onSamplePadClick = (e) => {
-        const audio = e.target.children[0];
-        audio.currentTime = 0;
-        audio.play();
+    onSamplePadClick = (sampleName) => {
+        playSample.call(this, sampleName);
+    }
+
+    onGainChange = (sampleName, value) => {
+        const updatedKit = this.updateSample(sampleName, 'gainValue', value);
+        this.setState({ kitData: updatedKit });
     }
 
 
@@ -103,6 +107,7 @@ class Sequencer extends Component {
             kitData: this.state.kitData,
             onSamplePadClick: this.onSamplePadClick,
             onStepPadClick: this.onStepPadClick,
+            onGainChange: this.onGainChange
         }
 
         return (
