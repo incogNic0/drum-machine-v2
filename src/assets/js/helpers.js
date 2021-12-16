@@ -46,20 +46,25 @@ export function updateSamplePattern(sampleName, stepNum) {
 
 export function updateSample(sampleName, changeProp, newValue) {
     const copy = copyKitData(this.state.kitData);
-    copy.samples.map(sample => {
-        if(!sample[changeProp]) throw ReferenceError(`"${changeProp}" does not exist.`)
+
+    copy.samples.forEach(sample => {
+        if(!sample[changeProp] === undefined) 
+            throw ReferenceError(`"${changeProp}" does not exist.`);
+
         if(sample.name === sampleName) {
+
             if (changeProp === 'pattern') {
                 const step = newValue;
                 sample.pattern[step] = !sample.pattern[step];
+
                 if(sample.pattern[step] && !this.context.isPlaying) {
                     playback(sample, 0); // is active, but not playing
                 }
+
             } else {
                 sample[changeProp] = newValue;
             }
         }
-        return sample;
     });
     return copy;
 }

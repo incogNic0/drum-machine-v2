@@ -28,9 +28,11 @@ export async function getFile(filepath) {
 export function playback(sample, startTime) {
     const playSound = audioContext.createBufferSource();
     const gainNode = audioContext.createGain();
+    const pannerNode = audioContext.createStereoPanner();
     gainNode.gain.value =  sample.gainValue;
+    pannerNode.pan.value = sample.panValue;
     playSound.buffer = sample.audio;
-    playSound.connect(gainNode).connect(audioContext.destination);
+    playSound.connect(gainNode).connect(pannerNode).connect(audioContext.destination);
     playSound.start(startTime); // will play when audioContext.currentTime === startTime
 }
 

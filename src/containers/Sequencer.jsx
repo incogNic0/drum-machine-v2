@@ -86,8 +86,15 @@ class Sequencer extends Component {
         playSample.call(this, sampleName);
     }
 
-    onGainChange = (sampleName, value) => {
-        const updatedKit = this.updateSample(sampleName, 'gainValue', value);
+    onSampleRangeInput = (evt, sampleName) => {
+        const input = evt.target;
+        const value = input.value;
+        let updateProp;
+
+        if( input.classList.contains('gain-input') ) updateProp = 'gainValue';
+        if( input.classList.contains('pan-input') ) updateProp = 'panValue'
+
+        const updatedKit = this.updateSample(sampleName, updateProp, value);
         this.setState({ kitData: updatedKit });
     }
 
@@ -107,7 +114,7 @@ class Sequencer extends Component {
             kitData: this.state.kitData,
             onSamplePadClick: this.onSamplePadClick,
             onStepPadClick: this.onStepPadClick,
-            onGainChange: this.onGainChange
+            onSampleRangeInput: this.onSampleRangeInput,
         }
 
         return (

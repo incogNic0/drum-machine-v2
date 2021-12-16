@@ -3,11 +3,11 @@ import '../../../assets/styles/SampleRow.css'
 import SamplePad from "./SamplePad";
 import BeatPad from "./BeatPad";
 
-function SampleRow({ sample, onSamplePadClick, onStepPadClick, onGainChange}) {
+function SampleRow({ sample, onSamplePadClick, onStepPadClick, onSampleRangeInput }) {
     const propsSamplePad = {
         sample,
         onSamplePadClick,
-        onGainChange
+        onSampleRangeInput
     }
     return (
         <div className='sample-row'>
