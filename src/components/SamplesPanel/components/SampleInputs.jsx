@@ -1,16 +1,9 @@
 import React from "react";
-import '../../../assets/styles/SamplePad.css';
 import '../../../assets/styles/RangeInputs.scss';
 
-function SamplePad({ sample, onSamplePadClick, onSampleRangeInput }) {
+function SampleInputs({ sample, onSampleRangeInput }) {
     const handleRangeEvt = (evt) => {          
         onSampleRangeInput(evt, sample.name);
-    }
-
-    const handlePadClick = (evt) => {
-        const elem = evt.target.tagName;
-        if (elem === 'INPUT') return;
-        onSamplePadClick(sample.name);
     }
 
     const showPanValue = () => {
@@ -22,9 +15,8 @@ function SamplePad({ sample, onSamplePadClick, onSampleRangeInput }) {
         return panDirection ? panDirection + panValue : 'C: 0';
     }
 
-    return (
-        <div className='sample-pad btn' onClick={handlePadClick}>
-            {/* <h5>{sample.name}</h5> */}
+    return(
+        <div>
             <label htmlFor={`gain-${sample.name}`}>Gain: {sample.gainValue}</label>
             <input 
                 id={`gain-${sample.name}`}
@@ -34,7 +26,7 @@ function SamplePad({ sample, onSamplePadClick, onSampleRangeInput }) {
                 step=".01" 
                 value={sample.gainValue} 
                 onInput={handleRangeEvt}
-                className="gain-input rs-range"
+                className="gain-input"
             />
             <label htmlFor={`pan-${sample.name}`}>
                 {showPanValue()}
@@ -47,10 +39,8 @@ function SamplePad({ sample, onSamplePadClick, onSampleRangeInput }) {
                 step=".01" 
                 value={sample.panValue}
                 onInput={handleRangeEvt}
-                className="pan-input rs-range"
+                className="pan-input"
             />
         </div>
     )
 }
-
-export default SamplePad;

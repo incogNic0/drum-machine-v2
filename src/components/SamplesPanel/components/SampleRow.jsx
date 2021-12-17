@@ -10,18 +10,23 @@ function SampleRow({ sample, onSamplePadClick, onStepPadClick, onSampleRangeInpu
         onSampleRangeInput
     }
     return (
-        <div className='sample-row'>
-            < SamplePad {...propsSamplePad} />
-            {sample.pattern.map( (stepState, stepNum) => {
-                const props = {
-                    stepNum,
-                    onStepPadClick,
-                    isActive: stepState,
-                    sampleName: sample.name,
-                    key: stepNum
-                };
-                return < BeatPad {...props} />;
-            })}
+        <div className="sample-row-container">
+            <div className="sample-row-title">
+                <h4>{sample.name}</h4>
+            </div>
+            <div className='sample-row-pads'>
+                < SamplePad {...propsSamplePad} />
+                {sample.pattern.map( (stepState, stepNum) => {
+                    const props = {
+                        stepNum,
+                        onStepPadClick,
+                        isActive: stepState,
+                        sampleName: sample.name,
+                        key: stepNum
+                    };
+                    return < BeatPad {...props} />;
+                })}
+            </div>
         </div>
     )
 }
