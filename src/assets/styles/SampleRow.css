@@ -3,10 +3,10 @@
     font-size: inherit;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    height: 60px;
     border-radius: 10px;
-    padding: 0 5px;
-    margin-bottom: 10px;
+    padding: 5px;
+    /* margin-bottom: 10px; */
 }
 
 .quarter {
@@ -14,22 +14,8 @@
     justify-content: space-between;
 }
 
-.sample-row-title {
-    display: flex;
-    justify-content: center;
-    padding-left: 20px;
-    /* margin-bottom: 5px; */
+.sample-row {
+    margin: 30px 0;
 }
 
-.sample-row-container h4 {
-    display: inline-block;
-    margin: 0;
-    min-width: 00px;
-    text-align: left;
-    color: whitesmoke;
-    /* background-color: black; */
-}
 
-.sample-row-container {
-    margin: 20px 0;
-}

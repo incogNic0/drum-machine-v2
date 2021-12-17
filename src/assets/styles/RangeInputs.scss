@@ -1,5 +1,5 @@
 .rs-range {
-    width: 95%;
+    // width: 95%;
     -webkit-appearance: none;
     &:focus {
         outline: none;
@@ -50,4 +50,17 @@
   &::-moz-focus-outer {
     border: 0;
     }
+}
+
+.sample-row-inputs {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: black;
+}
+
+.sample-row-inputs label {
+    color: whitesmoke;
+    font-size: 10px;
+    display: inline-block;
+    width: 100px;
 }
