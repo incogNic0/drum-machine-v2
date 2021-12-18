@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import '../../assets/styles/BeatIndicators.css'
+import '../../../assets/styles/BeatIndicators.css'
 import Indicator from "./Indicator";
-import { PlayerContext } from '../../contexts/PlayerContext';
+import { PlayerContext } from '../../../contexts/PlayerContext';
 
 
 function BeatIndicators(){

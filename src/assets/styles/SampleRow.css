@@ -1,12 +1,12 @@
 .sample-row-pads {
-    background-color: black;
+    width: 100%;
+    /* background-color: black; */
     font-size: inherit;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 60px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 5px;
-    /* margin-bottom: 10px; */
 }
 
 .quarter {
@@ -15,7 +15,15 @@
 }
 
 .sample-row {
-    margin: 30px 0;
+    background-color: black;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.sample-row h4 {
+    margin: 0;
+    color: aliceblue;
+    text-align: right;
 }
 
 

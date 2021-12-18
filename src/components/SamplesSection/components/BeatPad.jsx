@@ -9,16 +9,16 @@ function BeatPad({onStepPadClick, sampleName, stepNum ,isActive}) {
     const handleClickEvent = () => {
         onStepPadClick(sampleName, stepNum)
     }
-    const activeClass = isActive ? 'active' : '';
-    let playingClass = '';
 
-    if(context.isPlaying && stepNum === context.currentStep) {
-        playingClass = 'playing';
+    const addActiveClasses = () => {
+        if(!isActive) return '';
+        let playingClass = context.isPlaying && stepNum === context.currentStep;
+        return 'active' + (playingClass ? ' playing' : '')
     }
 
     return (
         <div 
-            className={`beat-pad btn ${activeClass} ${playingClass}`}
+            className={`beat-pad btn ${addActiveClasses()}`}
             onClick={(e) => {handleClickEvent()}}
         >
         </div>

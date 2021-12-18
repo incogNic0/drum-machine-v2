@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import '../assets/styles/Sequencer.css';
-import ControlPanel from '../components/ControlPanel/ControlPanel'
-import BeatIndicators from '../components/BeatIndicators/BeatIndicators';
-import SamplesSection from '../components/SamplesPanel/SamplesSection';
+import PlayerPanel from '../components/PlayerPanel/PlayerPanel'
+import SamplesSection from '../components/SamplesSection/SamplesSection';
 import allKits from '../assets/js/kits';
 import { handlePlayStop } from '../assets/js/playback';
-import { resetSamplePattern, getKitAudio, updateSample, playSample } from '../assets/js/helpers';
+import { resetSamplePattern, getKitAudio, updateSample } from '../assets/js/helpers';
 import KitData from '../assets/js/KitData';
 import { PlayerContext } from '../contexts/PlayerContext';
 
@@ -82,10 +81,6 @@ class Sequencer extends Component {
         this.setState({ kitData: updatedKit });
     }
 
-    onSamplePadClick = (sampleName) => {
-        playSample.call(this, sampleName);
-    }
-
     onSampleRangeInput = (evt, sampleName) => {
         const input = evt.target;
         const value = input.value;
@@ -112,15 +107,13 @@ class Sequencer extends Component {
 
         const propsSampleSection = {
             kitData: this.state.kitData,
-            onSamplePadClick: this.onSamplePadClick,
             onStepPadClick: this.onStepPadClick,
             onSampleRangeInput: this.onSampleRangeInput,
         }
 
         return (
             <div className="container">
-                < ControlPanel {...propsCtrlPanel} />
-                < BeatIndicators />
+                < PlayerPanel {...propsCtrlPanel} />
                 < SamplesSection {...propsSampleSection} />
             </div>
         );

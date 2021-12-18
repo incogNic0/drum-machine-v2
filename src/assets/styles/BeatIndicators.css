@@ -4,17 +4,12 @@
     align-items: flex-end;
 }
 
-.buffer {
-    display: inline-block;
-    width: 15%;
-}
-
 .indicators {
     padding: 0 5px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 85%;
+    width: 100%;
     margin-top: 10px;
 }
 
@@ -25,4 +20,16 @@
 .beat-indicator:nth-child(4n+5) {
     height: 16px;
     width: 16px;
+}
+
+.beat-indicator {
+    height: 12px;
+    width: 12px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.active {
+    background-color: red;
 }

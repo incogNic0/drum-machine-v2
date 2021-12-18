@@ -26,24 +26,6 @@ export const getKitAudio = async kit => {
     return updateKit;
 }
 
-export function updateSamplePattern(sampleName, stepNum) {
-    const updateKit = {...this.state.kitData};
-    const updateSamples = updateKit.samples.map( sample => {
-        if(sample.name === sampleName) {
-            sample.pattern[stepNum] = !sample.pattern[stepNum];
-
-            if(sample.pattern[stepNum] && !this.context.isPlaying) {
-                const audio = document.querySelector(`#${sampleName}`);
-                audio.currentTime = 0;
-                audio.play();
-            }
-        }
-        return sample;
-    })
-    updateKit.samples = updateSamples;
-    return updateKit;
-}
-
 export function updateSample(sampleName, changeProp, newValue) {
     const copy = copyKitData(this.state.kitData);
 
@@ -67,13 +49,6 @@ export function updateSample(sampleName, changeProp, newValue) {
         }
     });
     return copy;
-}
-
-export function playSample(sampleName) {
-    const [ sample ] = this.state.kitData.samples.filter( sample => {
-        return sample.name === sampleName;
-    })
-    playback(sample, 0);
 }
 
 function copyKitData(kit) {

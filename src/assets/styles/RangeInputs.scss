@@ -1,5 +1,5 @@
 .rs-range {
-    // width: 95%;
+    width: 80%;
     -webkit-appearance: none;
     &:focus {
         outline: none;
@@ -52,15 +52,30 @@
     }
 }
 
+.sample-row-inputs h4{
+    padding-left: 10px;
+    display: inline-block;
+}
+
+.sample-input {
+    display: inline-block;
+    // margin-left: 10px;
+}
+
 .sample-row-inputs {
+    padding-bottom: 4px;
+    display: block;
     display: flex;
-    justify-content: space-evenly;
-    background-color: black;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .sample-row-inputs label {
+    margin-top: 5px;
+    padding: 0;
     color: whitesmoke;
-    font-size: 10px;
-    display: inline-block;
-    width: 100px;
+    font-size: 12px;
+    display: block;
+    min-width: 120px;
+    text-align: center;
 }
