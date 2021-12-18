@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/step-sequencer/static/css/main.93ec0179.chunk.css",
-    "main.js": "/step-sequencer/static/js/main.39cb3369.chunk.js",
-    "main.js.map": "/step-sequencer/static/js/main.39cb3369.chunk.js.map",
-    "runtime-main.js": "/step-sequencer/static/js/runtime-main.4e235328.js",
-    "runtime-main.js.map": "/step-sequencer/static/js/runtime-main.4e235328.js.map",
-    "static/js/2.87d25201.chunk.js": "/step-sequencer/static/js/2.87d25201.chunk.js",
-    "static/js/2.87d25201.chunk.js.map": "/step-sequencer/static/js/2.87d25201.chunk.js.map",
-    "static/js/3.2cda5510.chunk.js": "/step-sequencer/static/js/3.2cda5510.chunk.js",
-    "static/js/3.2cda5510.chunk.js.map": "/step-sequencer/static/js/3.2cda5510.chunk.js.map",
+    "main.css": "/step-sequencer/static/css/main.525780dc.chunk.css",
+    "main.js": "/step-sequencer/static/js/main.58a5f179.chunk.js",
+    "main.js.map": "/step-sequencer/static/js/main.58a5f179.chunk.js.map",
+    "runtime-main.js": "/step-sequencer/static/js/runtime-main.4fff6c7e.js",
+    "runtime-main.js.map": "/step-sequencer/static/js/runtime-main.4fff6c7e.js.map",
+    "static/js/2.ba68add8.chunk.js": "/step-sequencer/static/js/2.ba68add8.chunk.js",
+    "static/js/2.ba68add8.chunk.js.map": "/step-sequencer/static/js/2.ba68add8.chunk.js.map",
+    "static/js/3.1a542fae.chunk.js": "/step-sequencer/static/js/3.1a542fae.chunk.js",
+    "static/js/3.1a542fae.chunk.js.map": "/step-sequencer/static/js/3.1a542fae.chunk.js.map",
     "index.html": "/step-sequencer/index.html",
-    "static/css/main.93ec0179.chunk.css.map": "/step-sequencer/static/css/main.93ec0179.chunk.css.map",
-    "static/js/2.87d25201.chunk.js.LICENSE.txt": "/step-sequencer/static/js/2.87d25201.chunk.js.LICENSE.txt",
-    "static/media/SamplePad.css": "/step-sequencer/static/media/brushed-aluminium.312149e7.jpg",
+    "static/css/main.525780dc.chunk.css.map": "/step-sequencer/static/css/main.525780dc.chunk.css.map",
+    "static/js/2.ba68add8.chunk.js.LICENSE.txt": "/step-sequencer/static/js/2.ba68add8.chunk.js.LICENSE.txt",
+    "static/media/PlayerPanel.css": "/step-sequencer/static/media/brushed-aluminium.312149e7.jpg",
     "static/media/Sequencer.css": "/step-sequencer/static/media/rotate-device.0eb0da31.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.4e235328.js",
-    "static/js/2.87d25201.chunk.js",
-    "static/css/main.93ec0179.chunk.css",
-    "static/js/main.39cb3369.chunk.js"
+    "static/js/runtime-main.4fff6c7e.js",
+    "static/js/2.ba68add8.chunk.js",
+    "static/css/main.525780dc.chunk.css",
+    "static/js/main.58a5f179.chunk.js"
   ]
 }
