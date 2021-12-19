@@ -1,52 +1,51 @@
 .tempo {
-    display: inline-block;
-    font-size: inherit;
-    background-color: black;
-    color: yellowgreen;
-    border-radius: 5px;
-    text-decoration: none;
-    padding: 4px 0;
-    min-width: 30px;
-    text-align: center;
+	display: inline-block;
+	font-size: inherit;
+	background-color: black;
+	color: yellowgreen;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 4px 0;
+	min-width: 30px;
+	text-align: center;
 }
 
 .current-tempo {
-    margin: 0;
-    background-color: black;
-    color: yellowgreen;
-    font-size: inherit;
-    min-width: 60px;
+	margin: 0;
+	background-color: black;
+	color: yellowgreen;
+	font-size: inherit;
+	min-width: 60px;
 }
 
 button {
-    background: transparent;
-    box-shadow: 0px 0px 0px transparent;
-    border: 0px solid transparent;
-    text-shadow: 0px 0px 0px transparent;
+	background: transparent;
+	box-shadow: 0px 0px 0px transparent;
+	border: 0px solid transparent;
+	text-shadow: 0px 0px 0px transparent;
 }
 
 button:hover {
-    box-shadow: 0px 0px 0px transparent;
-    border: 0px solid transparent;
-    text-shadow: 0px 0px 0px transparent;
+	box-shadow: 0px 0px 0px transparent;
+	border: 0px solid transparent;
+	text-shadow: 0px 0px 0px transparent;
 }
 
 button:active {
-    outline: none;
-    border: none;
+	outline: none;
+	border: none;
 }
 
 button:focus {
-    outline: 0;
+	outline: 0;
 }
 
 @media screen and (max-width: 450px) {
-    .tempo {
-      min-width: 30px;
-      padding: 3px;
-    }
-    .current-tempo {
-      min-width: 40px
-    }
+	.tempo {
+		min-width: 30px;
+		padding: 3px;
+	}
+	.current-tempo {
+		min-width: 40px;
+	}
 }
-

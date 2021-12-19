@@ -1,11 +1,11 @@
 .samples-section {
-    font-size: 20px;
-    text-align: center;
-    padding: 0 10px;
+	font-size: 20px;
+	text-align: center;
+	padding: 0 10px;
 }
 
 @media screen and (max-width: 450px) {
-    .samples-section {
-        padding: 0;
-    }
+	.samples-section {
+		padding: 0;
+	}
 }
