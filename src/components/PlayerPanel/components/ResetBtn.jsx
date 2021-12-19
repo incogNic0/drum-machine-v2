@@ -1,6 +1,4 @@
 import React from "react";
-import '../../../assets/styles/ResetBtn.css'
-
 
 function ResetBtn({onResetClick}) {
     return (

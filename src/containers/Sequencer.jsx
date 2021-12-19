@@ -73,6 +73,8 @@ class Sequencer extends Component {
     }
 
     onTempoChange = (tempo)=> {
+        tempo = tempo < 60 ? 60 : tempo;
+        tempo = tempo > 200 ? 200 : tempo;
         this.setState({currentTempo: tempo});
     }
 

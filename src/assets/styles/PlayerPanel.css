@@ -5,7 +5,6 @@
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: 2px solid rgba(0, 0, 0);
-    /* border-radius: 8px; */
     font-size: 18px;
     background-image: url('../images/brushed-aluminium.jpg');
 }
@@ -15,4 +14,63 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.stopped {
+    background-color: rgb(129, 172, 43);
+    padding-left: 5px;
+}
+.playing {
+    background-color: yellowgreen;
+}
+
+.play-stop-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 90px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px black;
+}
+
+.play-stop-btn img {
+    height: 95%;
+}
+
+.reset-btn {
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    color: yellowgreen;
+}
+
+.reset-btn p {
+    margin: 0;
+    padding: 0;
+}
+
+.reset-btn:active {
+    transform: scale(.95);
+}
+
+@media screen and (max-width: 450px) {
+    .player-panel {
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+    .play-stop-btn {
+        height: 40px;
+        width: 40px;
+        border-radius: 5px;
+    }
+    .stopped {
+        padding-left: 0px;
+    }
+
+    .reset-btn {
+        padding: 5px;
+        border-radius: 4px;
+    }
 }

@@ -62,4 +62,9 @@
     background-color: var(--fourth-quarter);
 }
 
+@media screen and (max-width: 450px) {
+    .beat-pad {
+        height: 30px;
+    }
+}
 

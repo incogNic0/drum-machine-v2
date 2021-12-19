@@ -1,5 +1,5 @@
 import React from "react";
-import '../../../assets/styles/RangeInputs.scss';
+import '../../../assets/styles/SampleInputs.css';
 
 function SampleInputs({ sample, onSampleRangeInput }) {
     const handleRangeEvt = (evt) => {          
@@ -7,9 +7,9 @@ function SampleInputs({ sample, onSampleRangeInput }) {
     }
 
     return(
-        <div className="sample-row-inputs">
+        <div className="sample-inputs-container">
             <h4>{sample.name}</h4>
-            <div className="sample-row-content">
+            <div className="sample-inputs-content">
                 <div className="sample-input">
                 <label htmlFor={`gain-${sample.name}`}>Gain: {sample.gainValue}</label>
                     <input 

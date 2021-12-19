@@ -1,6 +1,5 @@
 import React from "react";
 import '../../../assets/styles/SampleRow.css';
-import '../../../assets/styles/RangeInputs.scss';
 import BeatPad from "./BeatPad";
 import SampleInputs from './SampleInputs'
 

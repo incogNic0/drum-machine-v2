@@ -1,11 +1,8 @@
 .sample-row-pads {
     width: 100%;
-    /* background-color: black; */
     font-size: inherit;
     display: flex;
     justify-content: space-evenly;
-    height: 60px;
-    /* border-radius: 10px; */
     padding: 5px;
 }
 
@@ -26,4 +23,18 @@
     text-align: right;
 }
 
+@media screen and (max-width: 450px) {
 
+    .sample-inputs-container h4 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .sample-inputs-content {
+        width: 100%;
+    }
+
+    .sample-row-pads {
+        padding: 5px 2px;
+    }
+}
