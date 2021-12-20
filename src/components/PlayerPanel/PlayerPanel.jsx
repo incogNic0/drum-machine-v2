@@ -9,27 +9,25 @@ import BeatIndicators from "./components/BeatIndicators";
 function ControlPanel(props) {
 	const {
 		kits,
-		kitData,
+    currentKit,
 		currentTempo,
-		onPlayPause,
-		onKitSelection,
-		onResetClick,
-		onTempoChange,
+    handlePlayerClick,
+    onTempoChange
 	} = props;
 
-	const propsPlayBtn = { onPlayPause };
+	const propsPlayBtn = { handlePlayerClick };
 
-	const propsResetBtn = { onResetClick };
+	const propsResetBtn = { handlePlayerClick };
 
 	const propsPresetMenu = {
-		kitData,
 		kits,
-		onKitSelection,
+    currentKit,
+    handlePlayerClick,
 	};
 
 	const propsTempoCtrl = {
 		currentTempo,
-		onTempoChange,
+		onTempoChange
 	};
 
 	return (

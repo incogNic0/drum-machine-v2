@@ -1,62 +1,61 @@
 import { getFile, playback } from "./playback";
 
-export const resetSamplePattern = (kitData) => {
-	const resetKit = copyKitData(kitData);
-	resetKit.samples.map((sample) => {
-		sample.pattern = Array.from({ length: 16 }, () => false);
-		sample.gainValue = 1;
-		sample.panValue = 0;
-		return sample;
-	});
+export const resetSamples = (samples) => {
+	const resetSamples = samples.map( sample => {
+    const copy = {...sample};
+    copy.pattern = Array.from({ length: 16 }, () => false);
+    copy.effects = { gainValue: 1, panValue: 0};
 
-	return resetKit;
+    return copy;
+  })
+
+	return resetSamples;
 };
 
-export const getKitAudio = async (kit) => {
-	const updateKit = { ...kit };
-	const updateSamples = [];
+export const getSamplesAudio = async (samples) => {
+	const updatedSamples = [];
 
-	for (const sample of updateKit.samples) {
-		const updateSample = { ...sample };
-		updateSample.audio = await getFile(sample.url);
-		updateSamples.push(updateSample);
+	for (const sample of samples) {
+		const sampleCopy = {...sample };
+		sampleCopy.audio = await getFile(sample.path);
+
+    updatedSamples.push(sampleCopy);
 	}
-	updateKit.samples = updateSamples;
 
-	return updateKit;
+	return updatedSamples;
 };
 
-export function updateSample(sampleName, changeProp, newValue) {
-	const copy = copyKitData(this.state.kitData);
+export function updatePattern(sampleName, step) {
+  const updated = this.state.samples.map( sample => {
+    if(sample.name === sampleName) {
+      const copy = {...sample};
+      copy.pattern = [...sample.pattern];
+      copy.pattern[step] = !copy.pattern[step]
+      
+      if(copy.pattern[step] && !this.context.isPlaying) {
+        playback(copy, 0);
+      }
+      return copy;
+    }
+      
+    return sample;
+  });
 
-	copy.samples.forEach((sample) => {
-		if (!sample[changeProp] === undefined)
-			throw ReferenceError(`"${changeProp}" does not exist.`);
-
-		if (sample.name === sampleName) {
-			if (changeProp === "pattern") {
-				const step = newValue;
-				sample.pattern[step] = !sample.pattern[step];
-
-				if (sample.pattern[step] && !this.context.isPlaying) {
-					playback(sample, 0); // is active, but not playing
-				}
-			} else {
-				sample[changeProp] = newValue;
-			}
-		}
-	});
-	return copy;
+	return updated
 }
 
-function copyKitData(kit) {
-	const kitCopy = { ...kit };
-	const samplesCopy = kitCopy.samples.map((sample) => {
-		const sampleCopy = { ...sample };
-		const patternCopy = [...sample.pattern];
-		sampleCopy.pattern = patternCopy;
-		return sampleCopy;
-	});
-	kitCopy.samples = samplesCopy;
-	return kitCopy;
+export function updateEffect(sampleName, effect, value) {
+  const updated = this.state.samples.map( sample => {
+    if(sample.name === sampleName) {
+      const copy = {...sample};
+      copy.effects = {...sample.effects};
+      copy.effects[effect] = value;
+    
+      return copy;
+    }
+    
+    return sample;
+  });
+
+  return updated;
 }

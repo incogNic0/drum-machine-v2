@@ -12,7 +12,7 @@ function SampleInputs({ sample, onSampleRangeInput }) {
 			<div className="sample-inputs-content">
 				<div className="sample-input">
 					<label htmlFor={`gain-${sample.name}`}>
-						Gain: {sample.gainValue}
+						Gain: {sample.effects.gainValue}
 					</label>
 					<input
 						id={`gain-${sample.name}`}
@@ -20,15 +20,15 @@ function SampleInputs({ sample, onSampleRangeInput }) {
 						min="0"
 						max="2"
 						step=".01"
-						value={sample.gainValue}
+						value={sample.effects.gainValue}
 						onInput={handleRangeEvt}
 						className="gain-input rs-range"
+            name="gainValue"
 					/>
 				</div>
 				<div className="sample-input">
 					<label htmlFor={`pan-${sample.name}`}>
-						Pan: {sample.panValue}
-						{/* {showPanValue()} */}
+						Pan: {sample.effects.panValue}
 					</label>
 					<input
 						id={`panner-${sample.name}`}
@@ -36,9 +36,10 @@ function SampleInputs({ sample, onSampleRangeInput }) {
 						min="-1"
 						max="1"
 						step=".01"
-						value={sample.panValue}
+						value={sample.effects.panValue}
 						onInput={handleRangeEvt}
 						className="pan-input rs-range"
+            name="panValue"
 					/>
 				</div>
 			</div>

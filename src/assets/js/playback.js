@@ -28,8 +28,8 @@ export function playback(sample, startTime) {
 	const playSound = audioContext.createBufferSource();
 	const gainNode = audioContext.createGain();
 	const pannerNode = audioContext.createStereoPanner();
-	gainNode.gain.value = sample.gainValue;
-	pannerNode.pan.value = sample.panValue;
+	gainNode.gain.value = sample.effects.gainValue;
+	pannerNode.pan.value = sample.effects.panValue;
 	playSound.buffer = sample.audio;
 	playSound
 		.connect(gainNode)
@@ -48,7 +48,7 @@ function incrementStep() {
 // schedule playback for all active samples in the next step sequence
 function scheduleSamples(step, startTime) {
 	stepsQueue.push({ step, startTime });
-	for (const sample of this.state.kitData.samples) {
+	for (const sample of this.state.samples) {
 		const isActive = sample.pattern[step];
 		if (isActive) {
 			playback(sample, startTime);

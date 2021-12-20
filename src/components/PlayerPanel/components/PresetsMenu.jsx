@@ -1,26 +1,24 @@
 import React from "react";
 import "../../../assets/styles/PresetsMenu.css";
 
-function PresestsMenu({ kits, kitData, onKitSelection }) {
-	const kitOptions = [];
-	const kitName = kitData.name;
-	for (const kit of kits) {
-		const kitOption = (
-			<option value={kit} key={kit}>
-				{kit}{" "}
-			</option>
-		);
-		kitOptions.push(kitOption);
-	}
+function PresestsMenu({ kits, currentKit, handlePlayerClick }) {
+
 	return (
 		<div className="presets-menu btn">
 			<select
-				value={kitName}
-				onChange={onKitSelection}
+				value={currentKit}
+				onChange={handlePlayerClick}
 				id="kits"
 				className="btn"
-			>
-				{kitOptions}
+        name="kit-selector"
+      >
+
+				{ kits.map( kit => {
+          return <option value={kit.name} key={kit.name}>
+            {kit.name}
+          </option>
+        })}
+
 			</select>
 		</div>
 	);

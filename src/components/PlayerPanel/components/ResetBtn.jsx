@@ -1,10 +1,14 @@
 import React from "react";
 
-function ResetBtn({ onResetClick }) {
+function ResetBtn({ handlePlayerClick }) {
 	return (
-		<div className="reset-btn btn" onClick={onResetClick}>
-			<p>reset</p>
-		</div>
+		<div 
+      className="reset-btn btn" 
+      name="reset"
+      onClick={handlePlayerClick}
+    >
+      reset
+    </div>
 	);
 }
 
