@@ -5,6 +5,7 @@ import ResetBtn from "./components/ResetBtn";
 import PresestsMenu from "./components/PresetsMenu";
 import TempoCtrl from "./components/TempoCtrl";
 import BeatIndicators from "./components/BeatIndicators";
+import Filters from "./components/Filters";
 
 function ControlPanel(props) {
 	const {
@@ -12,7 +13,8 @@ function ControlPanel(props) {
     currentKit,
 		currentTempo,
     handlePlayerClick,
-    onTempoChange
+    onTempoChange,
+    onFilterSelect
 	} = props;
 
 	const propsPlayBtn = { handlePlayerClick };
@@ -37,6 +39,7 @@ function ControlPanel(props) {
 				<ResetBtn {...propsResetBtn} />
 				<PresestsMenu {...propsPresetMenu} />
 				<TempoCtrl {...propsTempoCtrl} />
+        <Filters onFilterSelect={onFilterSelect} />
 			</div>
 			<div>
 				<BeatIndicators />

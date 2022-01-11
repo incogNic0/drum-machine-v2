@@ -1,0 +1,57 @@
+.filter {
+  width: 25%;
+  background-color: black;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.filter h4 {
+  text-align: center;
+  color: yellowgreen;
+  text-transform: uppercase;
+  font-size: .9rem;
+  margin-bottom: 4px;
+}
+
+.filter-selection {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-bottom: 4px;
+}
+
+.filter-type {
+  color: rgba(153, 205, 50, 0.7);
+  font-size: .9rem;
+  background: black;
+}
+
+.filter-inputs {
+  text-align: center;
+  font-size: .8rem;
+}
+
+.filter-inputs .rs-range {
+  width: 100%;
+}
+
+.filter-type.active {
+  color: yellowgreen;
+}
+
+.filter-inputs label {
+  padding: 4px;
+  border-radius: 5px;
+  color: yellowgreen;
+}
+
+.filter-inputs input {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 650px ) {
+  .filter {
+    margin-top: 10px;
+    width: 100%;
+  }
+}

@@ -23,6 +23,7 @@ class Sequencer extends Component {
 			currentTempo: 0,
       currentKit: '',
 			samples: null,
+      filterType: null
 		};
 		this.updatePattern = updatePattern.bind(this);
     this.updateEffect = updateEffect.bind(this)
@@ -97,6 +98,10 @@ class Sequencer extends Component {
 		this.setState({ currentTempo: tempo });
 	};
 
+  onFilterSelect = filterType => {
+    this.setState({ filterType });
+  }
+
 	onStepPadClick = (sampleName, stepNum) => {
 		const samples = this.updatePattern(sampleName, stepNum);
 		this.setState({ samples });
@@ -110,13 +115,15 @@ class Sequencer extends Component {
 		this.setState({ samples });
 	};
 
+
 	render() {
 		const propsPlayer = {
 			kits: this.state.kits,
       currentKit: this.state.currentKit,
 			currentTempo: this.state.currentTempo,
       handlePlayerClick: this.handlePlayerClick,
-			onTempoChange: this.onTempoChange
+			onTempoChange: this.onTempoChange,
+      onFilterSelect: this.onFilterSelect,
 		};
 
 		const propsSamples = {
