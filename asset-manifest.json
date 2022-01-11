@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/step-sequencer/static/css/main.ebf23b6f.chunk.css",
-    "main.js": "/step-sequencer/static/js/main.5d9b67cf.chunk.js",
-    "main.js.map": "/step-sequencer/static/js/main.5d9b67cf.chunk.js.map",
-    "runtime-main.js": "/step-sequencer/static/js/runtime-main.e202a797.js",
-    "runtime-main.js.map": "/step-sequencer/static/js/runtime-main.e202a797.js.map",
-    "static/js/2.d68039be.chunk.js": "/step-sequencer/static/js/2.d68039be.chunk.js",
-    "static/js/2.d68039be.chunk.js.map": "/step-sequencer/static/js/2.d68039be.chunk.js.map",
-    "static/js/3.8b4bbd1b.chunk.js": "/step-sequencer/static/js/3.8b4bbd1b.chunk.js",
-    "static/js/3.8b4bbd1b.chunk.js.map": "/step-sequencer/static/js/3.8b4bbd1b.chunk.js.map",
+    "main.css": "/step-sequencer/static/css/main.f70336bd.chunk.css",
+    "main.js": "/step-sequencer/static/js/main.2061f037.chunk.js",
+    "main.js.map": "/step-sequencer/static/js/main.2061f037.chunk.js.map",
+    "runtime-main.js": "/step-sequencer/static/js/runtime-main.4fff6c7e.js",
+    "runtime-main.js.map": "/step-sequencer/static/js/runtime-main.4fff6c7e.js.map",
+    "static/js/2.01615594.chunk.js": "/step-sequencer/static/js/2.01615594.chunk.js",
+    "static/js/2.01615594.chunk.js.map": "/step-sequencer/static/js/2.01615594.chunk.js.map",
+    "static/js/3.1a542fae.chunk.js": "/step-sequencer/static/js/3.1a542fae.chunk.js",
+    "static/js/3.1a542fae.chunk.js.map": "/step-sequencer/static/js/3.1a542fae.chunk.js.map",
     "index.html": "/step-sequencer/index.html",
-    "static/css/main.ebf23b6f.chunk.css.map": "/step-sequencer/static/css/main.ebf23b6f.chunk.css.map",
-    "static/js/2.d68039be.chunk.js.LICENSE.txt": "/step-sequencer/static/js/2.d68039be.chunk.js.LICENSE.txt",
+    "static/css/main.f70336bd.chunk.css.map": "/step-sequencer/static/css/main.f70336bd.chunk.css.map",
+    "static/js/2.01615594.chunk.js.LICENSE.txt": "/step-sequencer/static/js/2.01615594.chunk.js.LICENSE.txt",
     "static/media/PlayerPanel.css": "/step-sequencer/static/media/brushed-aluminium.312149e7.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e202a797.js",
-    "static/js/2.d68039be.chunk.js",
-    "static/css/main.ebf23b6f.chunk.css",
-    "static/js/main.5d9b67cf.chunk.js"
+    "static/js/runtime-main.4fff6c7e.js",
+    "static/js/2.01615594.chunk.js",
+    "static/css/main.f70336bd.chunk.css",
+    "static/js/main.2061f037.chunk.js"
   ]
 }
