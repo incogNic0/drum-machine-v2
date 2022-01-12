@@ -1,15 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../../assets/styles/SampleInputs.css";
 
 function SampleInputs({ sample, onSampleRangeInput }) {
+  const [hideInputs, sethideInputs] = useState(false);
+
+  const handleDisplayClick = () => {
+    sethideInputs(prev => !prev);
+  }
 	const handleRangeEvt = (evt) => {
 		onSampleRangeInput(evt, sample.name);
 	};
 
 	return (
 		<div className="sample-inputs-container">
-			<h4>{sample.name}</h4>
-			<div className="sample-inputs-content">
+      <h4>
+        {sample.name}
+        <span 
+          className="sample-display-option"
+          onClick={handleDisplayClick}
+        >
+          {hideInputs ? 'show' : 'hide'}
+        </span>
+      </h4>
+			<div className={`sample-inputs-content ${hideInputs ? 'hidden' : ''}`}>
 				<div className="sample-input">
 					<label htmlFor={`gain-${sample.name}`}>
 						Gain: {sample.effects.gainValue}

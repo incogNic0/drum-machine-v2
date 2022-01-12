@@ -61,6 +61,7 @@
 	align-items: flex-end;
 }
 .sample-inputs-container h4 {
+  padding-top: 5px;
 	padding-left: 10px;
 	display: inline-block;
 }
@@ -68,6 +69,9 @@
 .sample-inputs-content {
 	display: flex;
 	justify-content: space-evenly;
+}
+.hidden {
+  display: none;
 }
 .sample-input {
 	display: inline-block;
@@ -81,4 +85,15 @@
 	display: block;
 	min-width: 120px;
 	text-align: center;
+}
+
+.sample-display-option {
+  color: whitesmoke;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 1px;
+  font-size: .6rem;
+  align-self: flex-end;
+  font-style: italic;
+  border-bottom: 1px solid whitesmoke;
 }
