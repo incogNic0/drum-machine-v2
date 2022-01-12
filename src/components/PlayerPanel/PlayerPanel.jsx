@@ -35,8 +35,8 @@ function ControlPanel(props) {
 	return (
 		<div className="player-panel">
 			<div className="player-controls">
-				<PlayBtn {...propsPlayBtn} />
-				<ResetBtn {...propsResetBtn} />
+        <PlayBtn {...propsPlayBtn} />
+        <ResetBtn {...propsResetBtn} />
 				<PresestsMenu {...propsPresetMenu} />
 				<TempoCtrl {...propsTempoCtrl} />
         <Filters onFilterSelect={onFilterSelect} />

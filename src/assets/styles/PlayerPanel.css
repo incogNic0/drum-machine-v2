@@ -4,7 +4,7 @@
 	width: 100%;
 	padding-bottom: 10px;
 	border-bottom: 2px solid rgba(0, 0, 0);
-	font-size: 18px;
+	font-size: 16px;
 	background-image: url("../images/brushed-aluminium.jpg");
 }
 .player-controls {
@@ -41,8 +41,8 @@
 .reset-btn {
 	text-transform: uppercase;
 	background-color: rgba(0, 0, 0, 0.8);
-	padding: 10px;
-	border-radius: 10px;
+	padding: 5px;
+	border-radius: 5px;
 	color: yellowgreen;
 }
 
@@ -61,8 +61,8 @@
 		padding-bottom: 10px;
 	}
 	.play-stop-btn {
-		height: 40px;
-		width: 40px;
+		height: 60px;
+		width: 60px;
 		border-radius: 5px;
 	}
 	.stopped {
