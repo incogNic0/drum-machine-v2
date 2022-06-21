@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.47b4417f.css",
-    "main.js": "/static/js/main.28689d34.js",
-    "index.html": "/index.html",
-    "main.47b4417f.css.map": "/static/css/main.47b4417f.css.map",
-    "main.28689d34.js.map": "/static/js/main.28689d34.js.map"
+    "main.css": "/step-sequencer/static/css/main.47b4417f.css",
+    "main.js": "/step-sequencer/static/js/main.28689d34.js",
+    "index.html": "/step-sequencer/index.html",
+    "main.47b4417f.css.map": "/step-sequencer/static/css/main.47b4417f.css.map",
+    "main.28689d34.js.map": "/step-sequencer/static/js/main.28689d34.js.map"
   },
   "entrypoints": [
     "static/css/main.47b4417f.css",
