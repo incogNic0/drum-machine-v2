@@ -7,7 +7,9 @@ const PlayBtn = () => {
 	const isPlaying = useIsPlaying();
 	const { toggleIsPlaying, resetStep } = useActions();
 
-	const imgPath = isPlaying ? '/images/stop.png' : '/images/play.png';
+	const imgPath = isPlaying
+		? '/assets/images/stop.png'
+		: '/assets/images/play.png';
 	const altText = isPlaying ? 'stop' : 'play';
 
 	useEffect(() => {

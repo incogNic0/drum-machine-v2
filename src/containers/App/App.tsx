@@ -20,7 +20,7 @@ function App() {
 		<div className="App">
 			<img
 				className="bg-image"
-				src="/images/brushed-aluminium.jpg"
+				src="/assets/images/brushed-aluminium.jpg"
 				alt="brushed aluminium"
 			/>
 			<ControlPanel />
