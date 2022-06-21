@@ -1,0 +1,53 @@
+.indicator-panel {
+	display: flex;
+	justify-content: flex-end;
+  padding: 0 3rem;
+	align-items: flex-end;
+  width: 100%;
+}
+
+.indicators {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+}
+
+.beat-indicator:nth-child(1) {
+	height: 1rem;
+	width: 1rem;
+}
+.beat-indicator:nth-child(4n + 5) {
+	height: 1rem;
+	width: 1rem;
+}
+
+.beat-indicator {
+	height: .85rem;
+	width: .85rem;
+	background-color: black;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.active {
+	background-color: red;
+}
+
+@media screen and (max-width: 450px) {
+  .indicator-panel {
+    padding: 0;
+  }
+	.beat-indicator:nth-child(1) {
+		height: .9rem;
+		width: .9rem;
+	}
+	.beat-indicator:nth-child(4n + 5) {
+		height: .9rem;
+		width: .9rem;
+	}
+	.beat-indicator {
+		height: .8rem;
+		width: .8rem;
+	}
+}

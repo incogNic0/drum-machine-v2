@@ -1,0 +1,27 @@
+.tempo {
+	display: inline-block;
+	background-color: black;
+	color: yellowgreen;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 4px 0;
+	min-width: 30px;
+	text-align: center;
+}
+
+.current-tempo {
+	margin: 0;
+	background-color: black;
+	color: yellowgreen;
+	width: 50px;
+}
+
+@media screen and (max-width: 450px) {
+	.tempo {
+		min-width: 30px;
+		padding: 3px;
+	}
+	.current-tempo {
+		min-width: 40px;
+	}
+}

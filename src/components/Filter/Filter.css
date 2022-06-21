@@ -1,0 +1,117 @@
+.filter {
+  width: 25%;
+  min-width: 220px;
+  background-color: #000000;
+  padding: 0 10px;
+  border-radius: 0 0 8px 8px;
+  margin-left: auto;
+  margin-right: 3%;
+}
+
+.filter-header {
+  width: 100%;
+  text-align: center;
+}
+
+.filter-content {
+  overflow: hidden;
+  width: 100%;
+  height: 110px;
+  transition: .25s;
+}
+
+.collapse-option {
+  cursor: pointer;
+  text-transform: uppercase;
+  float: right;
+  align-self: center;
+  color: yellowgreen;
+  font-size: 1.25rem;
+  margin-right: .5rem;
+  transform: translateY(-4px);
+}
+
+.collapse {
+  height: 0;
+}
+
+.filter h4 {
+  display: inline-block;
+  text-align: center;
+  color: yellowgreen;
+  text-transform: uppercase;
+  font-size: .9rem;
+  margin: 0;
+}
+
+h4 span.collapse {
+  float: right;
+}
+
+h4 span.collapse:hover {
+  cursor: pointer;
+}
+
+.filter-selection {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.filter-type {
+  color: rgba(153, 205, 50, 0.6);
+  font-size: .9rem;
+  background: black;
+}
+
+.filter-type:hover {
+  color: rgba(153, 205, 50, .85);
+}
+
+.filter-inputs {
+  text-align: center;
+  font-size: .8rem;
+}
+
+.filter-inputs .rs-range {
+  width: 100%;
+}
+
+.filter-type.active {
+  color: yellowgreen;
+}
+
+.filter-inputs label {
+  font-size: .7rem;
+  padding: 4px;
+  border-radius: 5px;
+  color: yellowgreen;
+}
+
+.filter-inputs input {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 700px ) {
+  .filter {
+    /* padding-bottom: 0; */
+    margin: auto;
+    width: 100%;
+    border-radius: 0;
+  }
+  .filter-selection {
+    justify-content: space-around;
+  }
+  .filter-content {
+    min-height: 0;
+  }
+  .filter-type:hover {
+    color: rgba(153, 205, 50, 0.6);
+  }
+  .filter-type.active:hover {
+    color: rgba(153, 205, 50);
+  }
+  .display-option {
+    display: inline;
+  }
+}

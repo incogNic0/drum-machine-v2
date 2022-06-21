@@ -1,0 +1,133 @@
+:root {
+	--first-quarter: #323643;
+	--second-quarter: #606470;
+	--third-quarter: #233142;
+	--fourth-quarter: #407088;
+	--active: #f0d43a;
+	--playing: #c50d66;
+}
+
+.sample-row-pads {
+	display: flex;
+  gap: .6rem;
+  flex: 1;
+	width: 100%;
+}
+
+.quarter {
+	display: flex;
+	justify-content: space-between;
+}
+
+.sample-row {
+  position: relative;
+	background-color: black;
+  padding: 10px;
+  padding-top: 0;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+.sample-row h4 {
+  margin: 0;
+	padding: 10px 0;
+  text-transform: uppercase;
+	color: aliceblue;
+  font-size: 1.5rem;
+}
+
+.sample-row i {
+  margin: 0 5px;
+  font-size: .8rem;
+  color: aliceblue;
+}
+
+.is-muted {
+  opacity: .5;
+}
+
+
+.beat-pad {
+	display: inline-block;
+	height: 3.5rem;
+  width: 100%;
+	border-radius: 10%;
+	background-color: var(--fourth-quarter);
+}
+
+.beat-pad.btn.selected {
+	background-color: var(--active);
+}
+
+.beat-pad.btn.selected.playing {
+	background-color: var(--playing);
+}
+
+/* beat 1 */
+.beat-pad:nth-child(-n + 4) {
+	background-color: var(--first-quarter);
+}
+
+/* beat 2 */
+.beat-pad:nth-child(5) {
+	background-color: var(--second-quarter);
+}
+.beat-pad:nth-child(6) {
+	background-color: var(--second-quarter);
+}
+.beat-pad:nth-child(7) {
+	background-color: var(--second-quarter);
+}
+.beat-pad:nth-child(8) {
+	background-color: var(--second-quarter);
+}
+
+/* beat 3 */
+.beat-pad:nth-child(9) {
+	background-color: var(--third-quarter);
+}
+.beat-pad:nth-child(10) {
+	background-color: var(--third-quarter);
+}
+.beat-pad:nth-child(11) {
+	background-color: var(--third-quarter);
+}
+.beat-pad:nth-child(12) {
+	background-color: var(--third-quarter);
+}
+
+/* beat 4 */
+.beat-pad:nth-last-child(-n + 4) {
+	background-color: var(--fourth-quarter);
+}
+
+@media screen and (max-width: 450px) {
+  .sample-row .sample-row-content h4 {
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+		text-align: center;
+	}
+  
+	.sample-inputs-content {
+    width: 100%;
+	}
+
+  .sample-row {
+    padding: 0 .4rem .5rem .4rem;
+    margin-top: 1rem;
+  }
+  
+	.sample-row-pads {
+    gap: .3rem;
+	}
+
+  .sample-row h4 {
+    padding: 5px 0;
+    font-size: 1.2rem;
+  }
+
+  .beat-pad {
+    height: 2.2rem;
+  }
+}

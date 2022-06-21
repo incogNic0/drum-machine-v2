@@ -1,0 +1,11 @@
+.reset-btn {
+	text-transform: uppercase;
+	background-color: black;
+	padding: 8px;
+	border-radius: 5px;
+	color: yellowgreen;
+}
+
+.reset-btn:active {
+	transform: scale(0.98);
+}

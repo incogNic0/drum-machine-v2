@@ -1,0 +1,18 @@
+.preset-selector {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.preset-selector select {
+  padding: 0;
+  font-size: .8rem;
+}
+
+.preset-selector i {
+  display: inline-block;
+  color: rgba(153, 205, 50, 0.8);
+  padding: 8px;
+  font-size: 1.2rem;
+}

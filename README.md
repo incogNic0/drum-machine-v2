@@ -1,10 +1,17 @@
-Step sequencer created using React, and Web Audio Api for playback of samples.
+#Step Sequencer
 
-Current kits include: 
-    Rock,
-    Hip-Hop,
-    House,
-    Techno,
-    Drum N' Bass
+### Current Kits:
 
-<a href="https://nico-nunez.github.io/step-sequencer/">Demo</a>
+- Rock
+- Hip-hop
+- House
+- Techno
+- Drum N' Bass
+
+### Technologies:
+
+- React
+- Typescript
+- AWS S3
+
+Current kits include: Rock, Hip-Hop, House, Techno, Drum N' Bass

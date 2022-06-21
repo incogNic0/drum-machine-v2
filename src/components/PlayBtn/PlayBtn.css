@@ -1,0 +1,30 @@
+.play-button {
+  position: relative;
+  display: inline-block;
+  background-color: #f0d53aea;
+  box-shadow: 0 0 4px 2px #000000aa;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.play-button::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  border-radius: 15px;
+}
+
+.play-button.active {
+  background-color: #f0d43a;
+}
+
+.play-button img {
+  height: 4.5rem;
+  width: 4.5rem;
+}

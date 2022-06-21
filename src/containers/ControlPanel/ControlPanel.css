@@ -1,0 +1,33 @@
+.control-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem .5rem;
+  border-bottom: 3px solid rgba(0, 0, 0);
+  color: yellowgreen;
+}
+
+@media screen and (max-width: 450px) {
+  .control-panel {
+    border-bottom: none;
+  }
+	.player-panel {
+		font-size: 12px;
+		padding-bottom: 10px;
+	}
+	.play-stop-btn {
+		height: 60px;
+		width: 60px;
+		border-radius: 5px;
+	}
+	.stopped {
+		padding-left: 0px;
+	}
+
+	.reset-btn {
+		padding: 5px;
+		border-radius: 4px;
+	}
+}

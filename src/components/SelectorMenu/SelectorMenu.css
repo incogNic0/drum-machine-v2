@@ -1,0 +1,12 @@
+.select-menu {
+	background-color: black;
+  color: yellowgreen;
+	text-transform: uppercase;
+	border: none;
+	padding: 5px;
+  outline: none;
+  max-width: 155px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
