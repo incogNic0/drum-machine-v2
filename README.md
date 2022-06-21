@@ -13,5 +13,3 @@
 - React
 - Typescript
 - AWS S3
-
-Current kits include: Rock, Hip-Hop, House, Techno, Drum N' Bass
