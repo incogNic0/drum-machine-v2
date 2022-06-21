@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/step-sequencer/static/css/main.47b4417f.css",
-    "main.js": "/step-sequencer/static/js/main.1b9cc56b.js",
-    "index.html": "/step-sequencer/index.html",
-    "main.47b4417f.css.map": "/step-sequencer/static/css/main.47b4417f.css.map",
-    "main.1b9cc56b.js.map": "/step-sequencer/static/js/main.1b9cc56b.js.map"
+    "main.css": "/static/css/main.47b4417f.css",
+    "main.js": "/static/js/main.1b9cc56b.js",
+    "index.html": "/index.html",
+    "main.47b4417f.css.map": "/static/css/main.47b4417f.css.map",
+    "main.1b9cc56b.js.map": "/static/js/main.1b9cc56b.js.map"
   },
   "entrypoints": [
     "static/css/main.47b4417f.css",
