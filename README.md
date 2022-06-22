@@ -1,5 +1,7 @@
 # Step Sequencer
 
+<a href="https://nico-nunez.github.io/step-sequencer/">Demo</a>
+
 ### Current Kits:
 
 - Rock
@@ -13,5 +15,3 @@
 - React
 - Typescript
 - AWS S3
-
-<a href="https://nico-nunez.github.io/step-sequencer/">Demo</a>
