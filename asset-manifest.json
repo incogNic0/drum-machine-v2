@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.f2eac416.css",
-    "main.js": "/static/js/main.9276cfbc.js",
-    "static/media/brushed-aluminium.jpg": "/static/media/brushed-aluminium.312149e7eaf8381c69a9.jpg",
-    "index.html": "/index.html",
-    "main.f2eac416.css.map": "/static/css/main.f2eac416.css.map",
-    "main.9276cfbc.js.map": "/static/js/main.9276cfbc.js.map"
+    "main.css": "/step-sequencer/static/css/main.f2eac416.css",
+    "main.js": "/step-sequencer/static/js/main.5ef920f8.js",
+    "static/media/brushed-aluminium.jpg": "/step-sequencer/static/media/brushed-aluminium.312149e7eaf8381c69a9.jpg",
+    "index.html": "/step-sequencer/index.html",
+    "main.f2eac416.css.map": "/step-sequencer/static/css/main.f2eac416.css.map",
+    "main.5ef920f8.js.map": "/step-sequencer/static/js/main.5ef920f8.js.map"
   },
   "entrypoints": [
     "static/css/main.f2eac416.css",
-    "static/js/main.9276cfbc.js"
+    "static/js/main.5ef920f8.js"
   ]
 }
