@@ -1,4 +1,4 @@
-#Step Sequencer
+# Step Sequencer
 
 ### Current Kits:
 
@@ -13,3 +13,5 @@
 - React
 - Typescript
 - AWS S3
+
+<a href="https://nico-nunez.github.io/step-sequencer/">Demo</a>
