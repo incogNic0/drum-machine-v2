@@ -1,4 +1,5 @@
 import './App.css';
+import bg from '../../assets/images/brushed-aluminium.jpg';
 import { useEffect } from 'react';
 import { useLoadKit } from '../../hooks';
 import Sequencer from '../Sequencer/Sequencer';
@@ -18,11 +19,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<img
-				className="bg-image"
-				src="/assets/images/brushed-aluminium.jpg"
-				alt="brushed aluminium"
-			/>
+			<img className="bg-image" src={bg} alt="brushed aluminium" />
 			<ControlPanel />
 			<Filter />
 			<Sequencer />

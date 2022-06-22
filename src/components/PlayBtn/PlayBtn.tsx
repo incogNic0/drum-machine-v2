@@ -1,15 +1,13 @@
 import './PlayBtn.css';
-import { useIsPlaying, useActions } from '../../hooks';
-import { handlePlayback } from '../../utils';
 import { useEffect } from 'react';
+import { handlePlayback } from '../../utils';
+import { useIsPlaying, useActions } from '../../hooks';
 
 const PlayBtn = () => {
 	const isPlaying = useIsPlaying();
 	const { toggleIsPlaying, resetStep } = useActions();
 
-	const imgPath = isPlaying
-		? '/assets/images/stop.png'
-		: '/assets/images/play.png';
+	const iconClass = isPlaying ? 'fa-solid fa-stop' : 'fa-solid fa-play';
 	const altText = isPlaying ? 'stop' : 'play';
 
 	useEffect(() => {
@@ -24,7 +22,7 @@ const PlayBtn = () => {
 				toggleIsPlaying();
 			}}
 		>
-			<img src={imgPath} alt={altText} />
+			<i className={iconClass}></i>
 		</div>
 	);
 };

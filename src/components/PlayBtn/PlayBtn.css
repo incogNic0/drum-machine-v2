@@ -1,10 +1,9 @@
 .play-button {
   position: relative;
-  display: inline-block;
-  background-color: #f0d53aea;
+  background-color: #f0d53ae0;
   box-shadow: 0 0 4px 2px #000000aa;
-  border-radius: 10px;
-  padding: 2px;
+  border-radius: .25rem;
+  text-align: center;
 }
 
 .play-button::after {
@@ -17,11 +16,17 @@
   height: 100%;
   width: 100%;
   z-index: -1;
-  border-radius: 15px;
+  border-radius: .3rem;
 }
 
 .play-button.active {
   background-color: #f0d43a;
+}
+
+.play-button i {
+  padding: 10px 15px 10px 17px;
+  font-size: 4rem;
+  color: black;
 }
 
 .play-button img {
