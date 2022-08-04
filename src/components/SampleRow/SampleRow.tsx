@@ -2,6 +2,7 @@ import './SampleRow.css';
 import React, { useCallback, useRef } from 'react';
 import { useTypedSelector, useIsPlaying, useActions } from '../../hooks';
 import StepPad from './StepPad';
+import SampleInputs from './SampleInputs';
 
 interface SampleRowProps {
 	sampleName: string;
@@ -45,14 +46,20 @@ const SampleRow: React.FC<SampleRowProps> = ({ sampleName }) => {
 	return (
 		<div className="sample-row">
 			<div className={`sample-row-content ${sample.mute && 'is-muted'}`}>
-				<h4>
-					{sampleName}
-					{sample.mute ? (
-						<i className="fa-solid fa-volume-xmark" onClick={onToggleMute}></i>
-					) : (
-						<i className="fa-solid fa-volume-high" onClick={onToggleMute}></i>
-					)}
-				</h4>
+				<div className="sample-row-header">
+					<h4>
+						{sampleName}
+						{sample.mute ? (
+							<i
+								className="fa-solid fa-volume-xmark"
+								onClick={onToggleMute}
+							></i>
+						) : (
+							<i className="fa-solid fa-volume-high" onClick={onToggleMute}></i>
+						)}
+					</h4>
+					<SampleInputs />
+				</div>
 				<audio ref={audioRef} src={sample.path} />
 				<div className="sample-row-pads">{renderedPads}</div>
 			</div>

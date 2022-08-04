@@ -28,12 +28,28 @@
 	margin-top: 20px;
 }
 
+.sample-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .sample-row h4 {
   margin: 0;
 	padding: 10px 0;
   text-transform: uppercase;
 	color: aliceblue;
   font-size: 1.5rem;
+}
+
+.sample-input-content {
+  display: flex;
+}
+
+.sample-inputs p {
+  color: aliceblue;
+  margin: 5px 0;
+  min-width: 105px;
 }
 
 .sample-row i {
@@ -108,14 +124,26 @@
     margin-bottom: 4px;
 		text-align: center;
 	}
+
+  .sample-row-header {
+    display: block;
+  }
   
-	.sample-inputs-content {
+	.sample-inputs {
     width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    /* display: flex;
+    justify-content: center; */
 	}
 
   .sample-row {
     padding: 0 .4rem .5rem .4rem;
     margin-top: 1rem;
+  }
+
+  .sample-input-content {
+    display: block;
   }
   
 	.sample-row-pads {
