@@ -3,4 +3,5 @@ export type Sample = {
 	path: string;
 	steps: boolean[];
 	mute: boolean;
+	gain: number;
 };

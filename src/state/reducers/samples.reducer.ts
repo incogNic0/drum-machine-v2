@@ -3,6 +3,8 @@ import { SamplesActionType } from '../actionTypes';
 import { SamplesAction } from '../actions/samples.actions';
 import { Sample } from '../models/sample';
 
+const DEFAULT_GAIN = 1;
+
 export interface SamplesState {
 	order: string[];
 	baseUrl: string;
@@ -34,6 +36,7 @@ const reducer = produce(
 					path: `${state.baseUrl}/${name.toLowerCase()}.wav`,
 					steps: Array(16).fill(false),
 					mute: false,
+					gain: DEFAULT_GAIN,
 				};
 				state.data[name] = newSample;
 				state.order.push(name);
@@ -70,6 +73,12 @@ const reducer = produce(
 				const { name, mute } = action.payload;
 				state.data[name].mute =
 					mute !== undefined ? mute : !state.data[name].mute;
+				return state;
+			}
+
+			case SamplesActionType.SET_SAMPLE_GAIN: {
+				const { name, gain } = action.payload;
+				state.data[name].gain = gain > 0 ? Math.min(gain, 2) : 0;
 				return state;
 			}
 

@@ -16,6 +16,7 @@ export enum SamplesActionType {
 	RESET_SAMPLES_STEPS = 'reset_sample_steps',
 	UPDATE_SAMPLES_BASE_URL = 'update_samples_base_url',
 	TOGGLE_MUTE_SAMPLE = 'toggle_mute_sample',
+	SET_SAMPLE_GAIN = 'set_sample_gain',
 }
 
 export enum PresetsActionType {

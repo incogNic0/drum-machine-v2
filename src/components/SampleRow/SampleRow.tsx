@@ -58,7 +58,7 @@ const SampleRow: React.FC<SampleRowProps> = ({ sampleName }) => {
 							<i className="fa-solid fa-volume-high" onClick={onToggleMute}></i>
 						)}
 					</h4>
-					<SampleInputs />
+					<SampleInputs sampleName={sampleName} />
 				</div>
 				<audio ref={audioRef} src={sample.path} />
 				<div className="sample-row-pads">{renderedPads}</div>

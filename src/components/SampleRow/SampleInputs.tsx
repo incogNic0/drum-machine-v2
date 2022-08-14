@@ -1,12 +1,20 @@
 import { useState } from 'react';
+import { useActions, useTypedSelector } from '../../hooks';
 import RangeInput from '../RangeInput/RangeInput';
 
-const SampleInputs = () => {
-	const [gain, setGain] = useState(1.0);
+type SampleInputsProps = {
+	sampleName: string;
+};
+
+const SampleInputs: React.FC<SampleInputsProps> = ({ sampleName }) => {
+	const gain = useTypedSelector(({ samples }) => {
+		return samples.data[sampleName].gain;
+	});
+	const { setSampleGain } = useActions();
 
 	const updateGain = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = parseFloat(e.currentTarget.value);
-		setGain(value);
+		setSampleGain(sampleName, value);
 	};
 
 	return (

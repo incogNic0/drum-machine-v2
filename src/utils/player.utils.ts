@@ -29,25 +29,27 @@ export const handlePlayback = (isPlaying: boolean) => {
 const playback = (sample: string, startTime: number) => {
 	const { currentKit } = getState().sequencer;
 	const filterType = getState().filter.type;
+	const gainValue = getState().samples.data[sample].gain;
 	const filter = window.audioFilter;
 	const playSound = audioContext.createBufferSource();
 	playSound.buffer = window.audioBuffers[currentKit][sample];
-	// TODO: NEED TO ADD UI COMPONENTS
-	// const gainNode = audioContext.createGain();
+	const gainNode = audioContext.createGain();
+	gainNode.gain.value = gainValue;
+	console.log(gainNode);
+	// TODO: NEED TO ADD UI COMPONENT
 	// const pannerNode = audioContext.createStereoPanner();
-	// gainNode.gain.value = sample.effects.gainValue;
 	// pannerNode.pan.value = sample.effects.panValue;
 	if (filterType) {
 		filter.type = filterType;
 		playSound
-			// .connect(gainNode)
 			// .connect(pannerNode)
+			.connect(gainNode)
 			.connect(filter)
 			.connect(audioContext.destination);
 	} else {
 		playSound
-			// .connect(gainNode)
 			// .connect(pannerNode)
+			.connect(gainNode)
 			.connect(audioContext.destination);
 	}
 	playSound.start(startTime); // will play when audioContext.currentTime === startTime

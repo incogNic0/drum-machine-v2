@@ -7,6 +7,7 @@ import {
 	ResetSamplesStepsAction,
 	LoadSamplePatternAction,
 	UpdateSamplesBaseUrlAction,
+	SetSampleGainAction,
 } from '../actions/samples.actions';
 
 export const updateSamplesBaseUrl = (
@@ -78,6 +79,19 @@ export const toggleMuteSample = (
 		payload: {
 			name,
 			mute,
+		},
+	};
+};
+
+export const setSampleGain = (
+	name: string,
+	gain: number
+): SetSampleGainAction => {
+	return {
+		type: SamplesActionType.SET_SAMPLE_GAIN,
+		payload: {
+			name,
+			gain,
 		},
 	};
 };

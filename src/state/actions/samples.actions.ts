@@ -48,9 +48,18 @@ export interface ToggleMuteSampleAction {
 	};
 }
 
+export interface SetSampleGainAction {
+	type: SamplesActionType.SET_SAMPLE_GAIN;
+	payload: {
+		name: string;
+		gain: number;
+	};
+}
+
 export type SamplesAction =
 	| LoadSampleAction
 	| ClearSamplesAction
+	| SetSampleGainAction
 	| ToggleSampleStepAction
 	| ToggleMuteSampleAction
 	| ResetSamplesStepsAction
