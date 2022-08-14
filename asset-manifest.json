@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/step-sequencer/static/css/main.42c417e9.css",
-    "main.js": "/step-sequencer/static/js/main.0c40fa42.js",
+    "main.js": "/step-sequencer/static/js/main.0e5194e3.js",
     "static/media/brushed-aluminium.jpg": "/step-sequencer/static/media/brushed-aluminium.312149e7eaf8381c69a9.jpg",
     "index.html": "/step-sequencer/index.html",
     "main.42c417e9.css.map": "/step-sequencer/static/css/main.42c417e9.css.map",
-    "main.0c40fa42.js.map": "/step-sequencer/static/js/main.0c40fa42.js.map"
+    "main.0e5194e3.js.map": "/step-sequencer/static/js/main.0e5194e3.js.map"
   },
   "entrypoints": [
     "static/css/main.42c417e9.css",
-    "static/js/main.0c40fa42.js"
+    "static/js/main.0e5194e3.js"
   ]
 }
